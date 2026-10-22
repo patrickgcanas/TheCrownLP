@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Crown LP
 
-## Getting Started
+Site da banda The Crown LP, tributo a Linkin Park. Next.js 16 (App Router, Cache Components) + Tailwind v4 + Supabase.
 
-First, run the development server:
+## Rodando localmente
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuração do Supabase
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Crie um projeto em [supabase.com](https://supabase.com).
+2. Rode o SQL de `supabase/migrations/0001_init.sql` no SQL Editor do projeto.
+3. Copie `.env.local.example` para `.env.local` e preencha com a URL e a anon key do projeto.
 
-## Learn More
+Sem essas variáveis configuradas, o site funciona normalmente com conteúdo de exemplo/estado vazio nas páginas de Mídia e Depoimentos.
 
-To learn more about Next.js, take a look at the following resources:
+## Estrutura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/app` — páginas (Início, História, Mídia, Depoimentos, Contato)
+- `src/components` — componentes de UI (Navbar, Footer, formulários, hero)
+- `src/lib/actions.ts` — Server Actions (envio de depoimento e de contato)
+- `src/lib/supabase.ts` — cliente Supabase e tipos
+- `supabase/migrations` — schema do banco
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Projeto pensado para deploy na Vercel. Configure as mesmas variáveis de ambiente do `.env.local` nas Environment Variables do projeto na Vercel.

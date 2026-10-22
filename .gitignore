@@ -32,9 +32,16 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env*.example
+
+# logs locais
+*.log
 
 # vercel
 .vercel
+
+# mídia pesada (fica no Supabase Storage, não no git)
+/public/videos/intro-video.mp4
 
 # typescript
 *.tsbuildinfo
