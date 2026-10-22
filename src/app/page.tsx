@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HeroVideo from "@/components/HeroVideo";
+import IntroVideoSection from "@/components/IntroVideoSection";
 
 export default function Home() {
   return (
@@ -34,6 +35,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <IntroVideoSection />
 
       <section className="border-t border-border bg-surface">
         <div className="mx-auto max-w-6xl px-6 py-16">
