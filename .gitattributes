@@ -1,0 +1,7 @@
+# Mesmas quebras de linha (LF) em qualquer computador: evita diffs falsos entre casa e escritório
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.mp4 binary
+*.ico binary

@@ -11,6 +11,8 @@ npm run dev
 
 Abra [http://localhost:3000](http://localhost:3000).
 
+Vai trabalhar em outro computador (ex.: escritório)? Siga [docs/TRABALHANDO-EM-OUTRO-PC.md](docs/TRABALHANDO-EM-OUTRO-PC.md).
+
 ## Configuração do Supabase
 
 1. Crie um projeto em [supabase.com](https://supabase.com).
