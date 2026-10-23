@@ -28,7 +28,7 @@ export default function ContatoForm() {
             id="nome"
             name="nome"
             required
-            className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-foreground outline-none focus:border-accent"
+            className="field"
           />
         </div>
         <div>
@@ -40,7 +40,7 @@ export default function ContatoForm() {
             name="email"
             type="email"
             required
-            className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-foreground outline-none focus:border-accent"
+            className="field"
           />
         </div>
       </div>
@@ -53,7 +53,7 @@ export default function ContatoForm() {
           <input
             id="telefone"
             name="telefone"
-            className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-foreground outline-none focus:border-accent"
+            className="field"
           />
         </div>
         <div>
@@ -65,7 +65,7 @@ export default function ContatoForm() {
             name="tipo_evento"
             required
             defaultValue=""
-            className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-foreground outline-none focus:border-accent"
+            className="field"
           >
             <option value="" disabled>
               Selecione
@@ -89,7 +89,7 @@ export default function ContatoForm() {
           required
           rows={5}
           placeholder="Conte um pouco sobre o evento: data, local, duração desejada do show..."
-          className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-foreground outline-none focus:border-accent"
+          className="field"
         />
       </div>
 
@@ -102,7 +102,7 @@ export default function ContatoForm() {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-full bg-accent px-7 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent-dim disabled:opacity-60"
+        className="btn-primary"
       >
         {pending ? "Enviando..." : "Enviar mensagem"}
       </button>

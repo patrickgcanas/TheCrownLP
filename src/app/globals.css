@@ -1,14 +1,17 @@
 @import "tailwindcss";
 
+/* Paleta tirada do logo: roxo do fundo, magenta das joias, dourado do metal, prata dos diamantes */
 :root {
-  --background: #0a0a0a;
-  --surface: #141414;
-  --surface-2: #1c1c1c;
-  --foreground: #f4f4f5;
-  --muted: #a1a1aa;
-  --border: #27272a;
-  --accent: #e4002b;
-  --accent-dim: #7a0017;
+  --background: #120a14;
+  --surface: #1d0f22;
+  --surface-2: #2a1530;
+  --foreground: #f3eef5;
+  --muted: #b9a8bf;
+  --border: #3a1f40;
+  --accent: #d63fb8;
+  --accent-dim: #8e2a9e;
+  --gold: #e3a95c;
+  --gold-dim: #8a5a2b;
 }
 
 @theme inline {
@@ -20,8 +23,10 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-dim: var(--accent-dim);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-gold: var(--gold);
+  --color-gold-dim: var(--gold-dim);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-bebas);
 }
 
 body {
@@ -29,9 +34,97 @@ body {
   color: var(--foreground);
 }
 
-.text-gradient-accent {
-  background: linear-gradient(90deg, #ffffff 0%, #ff3b55 100%);
+/* Títulos: letra condensada do pôster de show */
+.font-display {
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+/* "THE CROWN": branco que escorre para o dourado do metal da coroa */
+.text-gradient-crown {
+  background: linear-gradient(180deg, #ffffff 0%, #f6e3f0 50%, var(--gold) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* "LP TRIBUTE": magenta das joias com brilho */
+.text-gradient-accent {
+  background: linear-gradient(90deg, #f07ad9 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 18px rgb(214 63 184 / 0.4));
+}
+
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+    box-shadow: 0 6px 24px rgb(214 63 184 / 0.25);
+    transition: filter 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    filter: brightness(1.12);
+    box-shadow: 0 8px 30px rgb(214 63 184 / 0.4);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    background: rgb(227 169 92 / 0.08);
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    background: var(--background);
+    padding: 0.625rem 1rem;
+    color: var(--foreground);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .field:focus {
+    border-color: var(--accent);
+  }
 }

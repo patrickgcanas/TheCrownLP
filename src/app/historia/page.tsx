@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHeader from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "História — The Crown LP",
@@ -7,13 +8,8 @@ export const metadata: Metadata = {
 
 export default function HistoriaPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
-        Nossa história
-      </p>
-      <h1 className="mt-4 text-4xl font-extrabold tracking-tight">
-        Quem é a The Crown LP
-      </h1>
+    <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
+      <PageHeader eyebrow="Nossa história" title="QUEM É A" highlight="THE CROWN LP" />
 
       <div className="mt-10 space-y-6 text-lg leading-relaxed text-muted">
         <p>
@@ -26,7 +22,7 @@ export default function HistoriaPage() {
         </p>
         <p>
           Hoje a banda apresenta um setlist que percorre os grandes álbuns de
-          Linkin Park — de <em>Hybrid Theory</em> a <em>Meteora</em> e além —
+          Linkin Park — de <em className="text-foreground">Hybrid Theory</em> a <em className="text-foreground">Meteora</em> e além —
           reproduzindo com fidelidade os arranjos, a pegada e a energia dos
           shows originais, sem deixar de lado a própria identidade no palco.
         </p>
@@ -37,8 +33,8 @@ export default function HistoriaPage() {
         </p>
       </div>
 
-      <div className="mt-16 rounded-2xl border border-border bg-surface p-8">
-        <h2 className="text-xl font-bold">Conteúdo em construção</h2>
+      <div className="mt-16 rounded-2xl border border-border border-l-4 border-l-gold bg-surface p-8">
+        <h2 className="font-display text-3xl">CONTEÚDO EM CONSTRUÇÃO</h2>
         <p className="mt-3 text-muted">
           Este texto é um ponto de partida — a história completa (ano de
           formação, integrantes, bastidores, fotos) entra aqui conforme

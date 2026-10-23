@@ -8,16 +8,17 @@ export default function IntroVideoSection() {
   }
 
   return (
-    <section className="mx-auto max-w-5xl px-6 py-20">
-      <h2 className="text-2xl font-bold">O vídeo de abertura do nosso show</h2>
-      <p className="mt-3 max-w-2xl text-muted">
-        É assim que a The Crown LP sobe ao palco. Dá o play e sente a energia.
-      </p>
-      <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-surface">
+    <section className="mx-auto max-w-5xl px-4 py-20 sm:px-6">
+      <p className="eyebrow">Abertura do show</p>
+      <h2 className="font-display mt-3 text-5xl leading-none">
+        É ASSIM QUE A GENTE <span className="text-accent">SOBE AO PALCO</span>
+      </h2>
+      <p className="mt-3 max-w-2xl text-muted">Dá o play e sente a energia.</p>
+      <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_0_60px_rgb(214_63_184/0.15)]">
         <video
           className="aspect-video w-full"
           src={introVideoUrl}
-          poster="/images/hero-poster.jpg"
+          poster="/images/intro-poster.jpg"
           controls
           preload="none"
         />

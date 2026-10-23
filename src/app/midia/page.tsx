@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cacheLife, cacheTag } from "next/cache";
 import { supabase, supabaseEnabled, type MidiaItem } from "@/lib/supabase";
 import { midiaFallback } from "@/lib/fallback-data";
+import PageHeader from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Mídia — The Crown LP",
@@ -48,7 +49,7 @@ function VideoCard({ item }: { item: MidiaItem }) {
         </div>
       )}
       <div className="p-4">
-        <p className="font-semibold">{item.titulo}</p>
+        <p className="font-display text-2xl">{item.titulo}</p>
         {item.descricao && <p className="mt-1 text-sm text-muted">{item.descricao}</p>}
       </div>
     </div>
@@ -81,7 +82,7 @@ async function MidiaGrid() {
   return (
     <div className="space-y-16">
       <div>
-        <h2 className="text-xl font-bold">Vídeos</h2>
+        <h2 className="font-display text-4xl">VÍDEOS</h2>
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {videos.map((item) => (
             <VideoCard key={item.id} item={item} />
@@ -91,7 +92,7 @@ async function MidiaGrid() {
 
       {imagens.length > 0 && (
         <div>
-          <h2 className="text-xl font-bold">Fotos</h2>
+          <h2 className="font-display text-4xl">FOTOS</h2>
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {imagens.map((item) => (
               <ImageCard key={item.id} item={item} />
@@ -105,12 +106,10 @@ async function MidiaGrid() {
 
 export default function MidiaPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Mídia</p>
-      <h1 className="mt-4 text-4xl font-extrabold tracking-tight">Vídeos e fotos dos shows</h1>
-      <p className="mt-4 max-w-2xl text-muted">
+    <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <PageHeader eyebrow="Mídia" title="NOSSOS" highlight="SHOWS">
         Um recorte dos nossos shows — em breve, mais vídeos e fotos de apresentações recentes.
-      </p>
+      </PageHeader>
 
       <div className="mt-12">
         <MidiaGrid />

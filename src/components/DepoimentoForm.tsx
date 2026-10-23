@@ -11,7 +11,7 @@ export default function DepoimentoForm() {
 
   return (
     <form action={action} className="space-y-5 rounded-2xl border border-border bg-surface p-8">
-      <h2 className="text-xl font-bold">Deixe seu depoimento</h2>
+      <h2 className="font-display text-4xl">DEIXE SEU <span className="text-accent">DEPOIMENTO</span></h2>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -22,7 +22,7 @@ export default function DepoimentoForm() {
             id="nome"
             name="nome"
             required
-            className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-foreground outline-none focus:border-accent"
+            className="field"
           />
         </div>
         <div>
@@ -33,7 +33,7 @@ export default function DepoimentoForm() {
             id="papel"
             name="papel"
             placeholder="Ex: Bar X, casamento, prefeitura de Y"
-            className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-foreground outline-none focus:border-accent"
+            className="field"
           />
         </div>
       </div>
@@ -47,7 +47,7 @@ export default function DepoimentoForm() {
           name="mensagem"
           required
           rows={4}
-          className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-foreground outline-none focus:border-accent"
+          className="field"
         />
       </div>
 
@@ -61,7 +61,7 @@ export default function DepoimentoForm() {
               type="button"
               onClick={() => setAvaliacao(n)}
               aria-label={`${n} estrelas`}
-              className={`text-2xl transition-colors ${n <= avaliacao ? "text-accent" : "text-border"}`}
+              className={`text-2xl transition-colors ${n <= avaliacao ? "text-gold" : "text-border"}`}
             >
               ★
             </button>
@@ -78,7 +78,7 @@ export default function DepoimentoForm() {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-full bg-accent px-7 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent-dim disabled:opacity-60"
+        className="btn-primary"
       >
         {pending ? "Enviando..." : "Enviar depoimento"}
       </button>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { supabase, supabaseEnabled, type Depoimento } from "@/lib/supabase";
 import DepoimentoForm from "@/components/DepoimentoForm";
+import PageHeader from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Depoimentos — The Crown LP",
@@ -40,9 +41,9 @@ async function DepoimentosList() {
   return (
     <div className="grid gap-6 sm:grid-cols-2">
       {depoimentos.map((d) => (
-        <div key={d.id} className="rounded-2xl border border-border bg-surface p-6">
-          <div className="text-accent">{"★".repeat(d.avaliacao)}</div>
-          <p className="mt-3 text-foreground">{d.mensagem}</p>
+        <div key={d.id} className="rounded-2xl border border-border border-l-4 border-l-gold bg-surface p-6">
+          <div className="tracking-[0.2em] text-gold">{"★".repeat(d.avaliacao)}</div>
+          <p className="mt-3 leading-relaxed text-foreground">“{d.mensagem}”</p>
           <p className="mt-4 text-sm font-semibold">{d.nome}</p>
           {d.papel && <p className="text-xs text-muted">{d.papel}</p>}
         </div>
@@ -63,9 +64,8 @@ function DepoimentosFallback() {
 
 export default function DepoimentosPage() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Depoimentos</p>
-      <h1 className="mt-4 text-4xl font-extrabold tracking-tight">Quem já viu o show</h1>
+    <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6">
+      <PageHeader eyebrow="Depoimentos" title="QUEM JÁ" highlight="VIU O SHOW" />
 
       <div className="mt-12">
         <Suspense fallback={<DepoimentosFallback />}>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContatoForm from "@/components/ContatoForm";
+import PageHeader from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Contato — The Crown LP",
@@ -8,13 +9,11 @@ export const metadata: Metadata = {
 
 export default function ContatoPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-20">
-      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Contato</p>
-      <h1 className="mt-4 text-4xl font-extrabold tracking-tight">Vamos marcar um show?</h1>
-      <p className="mt-4 text-muted">
+    <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
+      <PageHeader eyebrow="Contato" title="VAMOS MARCAR UM" highlight="SHOW?">
         Preencha o formulário com os detalhes do seu evento e a gente retorna o
         mais rápido possível com uma proposta.
-      </p>
+      </PageHeader>
 
       <div className="mt-10">
         <ContatoForm />

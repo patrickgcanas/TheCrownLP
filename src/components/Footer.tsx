@@ -1,22 +1,19 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-surface">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <div>
-          <p className="font-bold tracking-tight text-foreground">
-            THE CROWN <span className="text-accent">LP</span>
-          </p>
-          <p className="mt-1">Tributo a Linkin Park — shows em bares, eventos e prefeituras.</p>
+          <Logo size={36} />
+          <p className="mt-3">Tributo a Linkin Park — shows em bares, eventos e prefeituras.</p>
+          <p className="font-display mt-1 text-lg tracking-[0.18em] text-gold">HEAVY IS THE CROWN</p>
         </div>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 uppercase tracking-[0.1em] text-xs">
           <a href="#" className="hover:text-foreground">
             Instagram
-          </a>
-          <a href="#" className="hover:text-foreground">
-            YouTube
           </a>
           <a href="#" className="hover:text-foreground">
             WhatsApp
@@ -26,7 +23,7 @@ export default function Footer() {
           </Link>
         </div>
       </div>
-      <p className="border-t border-border px-6 py-4 text-center text-xs text-muted">
+      <p className="border-t border-border px-4 py-4 text-center text-xs text-muted">
         © The Crown LP — Todos os direitos reservados.
       </p>
     </footer>
