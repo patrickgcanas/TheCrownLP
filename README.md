@@ -14,8 +14,9 @@ Abra [http://localhost:3000](http://localhost:3000).
 ## Configuração do Supabase
 
 1. Crie um projeto em [supabase.com](https://supabase.com).
-2. Rode o SQL de `supabase/migrations/0001_init.sql` no SQL Editor do projeto.
-3. Copie `.env.local.example` para `.env.local` e preencha com a URL e a anon key do projeto.
+2. Rode, em ordem, os arquivos de `supabase/migrations/` (`0001_init.sql`, `0002_storage_midia.sql`) no SQL Editor do projeto.
+3. Em Storage > `midia`, envie o `intro-video.mp4` e use a URL pública dele em `NEXT_PUBLIC_INTRO_VIDEO_URL`.
+4. Copie `.env.local.example` para `.env.local` e preencha com a URL e a anon key do projeto.
 
 Sem essas variáveis configuradas, o site funciona normalmente com conteúdo de exemplo/estado vazio nas páginas de Mídia e Depoimentos.
 
