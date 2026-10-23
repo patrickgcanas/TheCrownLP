@@ -1,6 +1,7 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { after } from "next/server";
+import { avisarBanda } from "./notify";
 import { supabase, supabaseEnabled } from "./supabase";
 
 export type ActionState = {
@@ -45,7 +46,20 @@ export async function enviarDepoimento(
     return { status: "error", message: "Não foi possível enviar agora. Tente novamente em alguns minutos." };
   }
 
-  revalidatePath("/depoimentos");
+  after(() =>
+    avisarBanda({
+      assunto: `Novo depoimento de ${nome} (${avaliacao}★)`,
+      titulo: "Novo depoimento aguardando aprovação",
+      linhas: [
+        ["Nome", nome],
+        ["Local / evento", papel],
+        ["Avaliação", "★".repeat(avaliacao)],
+        ["Depoimento", mensagem],
+      ],
+      link: "/admin/depoimentos",
+    }),
+  );
+
   return {
     status: "success",
     message: "Obrigado! Seu depoimento foi enviado e vai aparecer aqui depois de uma revisão rápida.",
@@ -85,6 +99,21 @@ export async function enviarContato(
   if (error) {
     return { status: "error", message: "Não foi possível enviar agora. Tente novamente em alguns minutos." };
   }
+
+  after(() =>
+    avisarBanda({
+      assunto: `Novo contato: ${tipoEvento} — ${nome}`,
+      titulo: "Novo pedido de contato pelo site",
+      linhas: [
+        ["Nome", nome],
+        ["E-mail", email],
+        ["Telefone / WhatsApp", telefone],
+        ["Tipo de evento", tipoEvento],
+        ["Mensagem", mensagem],
+      ],
+      link: "/admin/contatos",
+    }),
+  );
 
   return {
     status: "success",
