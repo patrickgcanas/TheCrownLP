@@ -58,3 +58,11 @@ create policy "Mídia é pública para leitura"
   on midia for select
   to anon
   using (true);
+
+-- Permissões mínimas do papel anon (o site usa só a anon key).
+-- As políticas de RLS acima continuam filtrando o que cada operação enxerga.
+grant usage on schema public to anon;
+grant insert on depoimentos to anon;
+grant select on depoimentos to anon;
+grant insert on contato_mensagens to anon;
+grant select on midia to anon;
