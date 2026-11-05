@@ -28,6 +28,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
   - Migrations em `supabase/migrations/`, rodadas **manualmente** no SQL Editor (sem CLI/integração GitHub). Copiar o SQL pelo VS Code; colar via terminal quebra acentos.
   - "Automatically expose new tables" está **desligado**: toda tabela nova precisa de `grant` explícito além das policies RLS.
   - Bucket público `midia` (vídeo de abertura e, com o painel, fotos/vídeos dos shows). Limite de 50 MB por arquivo no plano grátis.
+  - **O plano grátis pausa o projeto após ~7 dias sem uso** (aconteceu em nov/2026: o endereço some do DNS, o vídeo de abertura e os formulários param). Para reativar: painel do Supabase → Restore project. Prevenção: Vercel Cron diário (`vercel.json`) chama `/api/manter-ativo`, que faz uma consulta leve. Se pausar mesmo assim, conferir em Vercel → Settings → Cron Jobs se está rodando.
 - Variáveis de ambiente: ver `.env.local.example`. O `.env.local` não vai para o git.
 
 ## Identidade visual (aprovada pela banda)
