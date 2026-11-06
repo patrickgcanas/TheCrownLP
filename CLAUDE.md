@@ -51,7 +51,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 
 - Ativar o painel (passos no `docs/ATIVAR-PAINEL.md`) e mergear `admin` → `main`.
 - Links de Instagram e WhatsApp do rodapé (`src/components/Footer.tsx`) estão `#` — falta o @ e o número.
-- Texto da página História é provisório.
+- Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
 - Trocar a senha do banco do Supabase (foi exposta numa conversa).
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.
 
