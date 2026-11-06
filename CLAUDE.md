@@ -45,6 +45,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 
 - **Em produção (`main`, publicado em nov/2026)**: visual novo com fonte Inter Tight, páginas Início, História (com integrantes), Mídia (álbuns por show + Instagram), Depoimentos, Contato; formulários gravando no Supabase; painel em `/admin`.
   - Painel: login por link mágico só para `thecrownlptribute@gmail.com` (e-mail da banda), shows/álbuns com upload de fotos e vídeos e links do Instagram, aprovação de depoimentos, caixa de contatos, aviso por e-mail (Resend).
+  - E-mails de login saem pelo Resend via SMTP próprio no Supabase (Auth → Emails → SMTP: `smtp.resend.com:465`, usuário `resend`, remetente `onboarding@resend.dev`), porque o e-mail padrão do Supabase grátis só manda 2 por hora. Limite em Auth → Rate Limits: 30 e-mails/h. Sem domínio próprio, o Resend só entrega para o e-mail da conta (o da banda), o que basta.
   - Ativação feita em nov/2026: SQL `0003_admin.sql` rodado, URLs de redirect no Supabase Auth, conta no Resend com o e-mail da banda, `ADMIN_EMAIL` e `RESEND_API_KEY` na Vercel (Production e Preview). Testado de ponta a ponta (login, criar show, upload de 15 fotos, capa).
 - Instagram: feed do Behold (behold.so, conta com o e-mail da banda, plano grátis: 6 posts, atualiza 1x/dia, 1.200 views/mês). Link em `src/lib/instagram.ts`; aparece na Início e na Mídia. A conta @thecrown.lp é Profissional (exigência do Behold).
 - Vídeos: a banda não tem YouTube; usa Instagram. Vídeos ficam no Instagram (embed por link); só poucos destaques hospedados no Storage.
