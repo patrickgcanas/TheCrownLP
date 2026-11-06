@@ -134,6 +134,6 @@ create policy "Admin apaga arquivos de mídia"
   to authenticated
   using (bucket_id = 'midia' and public.is_admin());
 
--- >>> TROQUE PELO E-MAIL DA BANDA <<<
-insert into admins (email) values ('EMAIL_DA_BANDA@exemplo.com')
+-- E-mail da banda (quem pode entrar no painel)
+insert into admins (email) values ('thecrownlptribute@gmail.com')
 on conflict do nothing;

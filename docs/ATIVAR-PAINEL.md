@@ -5,7 +5,7 @@ Leva uns 15 minutos. Faça na ordem.
 ## 1. Banco de dados (Supabase → SQL Editor)
 
 1. Abra `supabase/migrations/0003_admin.sql` no VS Code.
-2. Na **última linha**, troque `EMAIL_DA_BANDA@exemplo.com` pelo e-mail da banda.
+2. A última linha já está com o e-mail da banda (`thecrownlptribute@gmail.com`).
 3. Selecione tudo (Ctrl+A), copie (Ctrl+C) e cole numa query nova do SQL Editor. Clique em **Run**.
    - Copie pelo VS Code, não pelo terminal — assim os acentos não quebram.
    - Resultado esperado: `Success. No rows returned`.
