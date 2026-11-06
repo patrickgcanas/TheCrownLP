@@ -5,7 +5,6 @@ import InstagramFeed from "@/components/InstagramFeed";
 const destaques = [
   { titulo: "+SHOWS", texto: "Em bares, casas noturnas e eventos pelo Brasil." },
   { titulo: "SETLIST COMPLETO", texto: "Os maiores clássicos de Hybrid Theory, Meteora e muito mais." },
-  { titulo: "PRONTA PRA VIAJAR", texto: "Estrutura própria de som e visual para qualquer palco." },
 ];
 
 export default function Home() {
@@ -30,9 +29,6 @@ export default function Home() {
             públicas.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3 md:justify-start">
-            <Link href="/contrate" className="btn-primary">
-              Contrate a banda
-            </Link>
             <Link href="/midia" className="btn-ghost">
               Assista aos vídeos
             </Link>
@@ -45,7 +41,7 @@ export default function Home() {
       <InstagramFeed />
 
       <section className="border-y border-border bg-surface">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:grid-cols-3 sm:px-6">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:grid-cols-2 sm:px-6">
           {destaques.map((d) => (
             <div key={d.titulo}>
               <p className="font-display text-4xl text-accent sm:text-3xl">{d.titulo}</p>
