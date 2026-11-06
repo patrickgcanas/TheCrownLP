@@ -43,7 +43,7 @@ export default function Home() {
 
       <div className="divider-gold mx-auto max-w-6xl" />
 
-      <IntroVideoSection />
+      <InstagramFeed />
 
       <section className="border-y border-border bg-surface">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:grid-cols-3 sm:px-6">
@@ -73,7 +73,7 @@ export default function Home() {
         </div>
       </section>
 
-      <InstagramFeed />
+      <IntroVideoSection />
 
       <section className="relative overflow-hidden border-t border-border bg-surface">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgb(214_63_184/0.22),transparent_60%)]" />
