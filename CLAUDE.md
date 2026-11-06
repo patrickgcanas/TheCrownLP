@@ -44,13 +44,16 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 ## Estado atual (atualizar quando mudar)
 
 - **Em produção (`main`)**: visual novo, páginas Início, História, Mídia, Depoimentos, Contato; formulários gravando no Supabase.
-- **Painel de administração no branch `admin` (não publicado)**: login por link mágico só para o e-mail da banda, shows/álbuns com upload de fotos e vídeos e links do Instagram, aprovação de depoimentos, caixa de contatos, aviso por e-mail (Resend). Permissões por RLS, testadas num Postgres local. Para ativar: `docs/ATIVAR-PAINEL.md` (está no branch `admin`). Ainda não foi testado com login de verdade — testar ponta a ponta antes de mergear no `main`.
+- **Branch `fonte-from-zero` (prévia, ainda não no `main`)**: fonte Inter Tight, textos novos da História + integrantes, feed do Instagram e o painel de administração (merge do branch `admin`).
+  - Painel: login por link mágico só para `thecrownlptribute@gmail.com` (e-mail da banda), shows/álbuns com upload de fotos e vídeos e links do Instagram, aprovação de depoimentos, caixa de contatos, aviso por e-mail (Resend).
+  - Ativação feita em nov/2026: SQL `0003_admin.sql` rodado, URLs de redirect no Supabase Auth, conta no Resend com o e-mail da banda, `ADMIN_EMAIL` e `RESEND_API_KEY` na Vercel (Production e Preview). **Falta testar o login de verdade na prévia** antes de mergear no `main`.
+- Instagram: feed do Behold (behold.so, conta com o e-mail da banda, plano grátis: 6 posts, atualiza 1x/dia, 1.200 views/mês). Link em `src/lib/instagram.ts`; aparece na Início e na Mídia. A conta @thecrown.lp é Profissional (exigência do Behold).
 - Vídeos: a banda não tem YouTube; usa Instagram. Vídeos ficam no Instagram (embed por link); só poucos destaques hospedados no Storage.
 
 ## Pendências
 
-- Ativar o painel (passos no `docs/ATIVAR-PAINEL.md`) e mergear `admin` → `main`.
-- Links de Instagram e WhatsApp do rodapé (`src/components/Footer.tsx`) estão `#` — falta o @ e o número.
+- Testar o painel na prévia (login + upload) e mergear `fonte-from-zero` → `main`.
+- Link do WhatsApp do rodapé (`src/components/Footer.tsx`) está `#` — falta o número.
 - Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
 - Trocar a senha do banco do Supabase (foi exposta numa conversa).
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.
