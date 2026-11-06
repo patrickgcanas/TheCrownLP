@@ -6,7 +6,7 @@ export const INSTAGRAM_USUARIO = "thecrown.lp";
 
 // Feed do Behold (behold.so) conectado ao Instagram da banda. Não é segredo: é um link público de leitura.
 // Vazio = a seção de Instagram não aparece no site.
-const BEHOLD_FEED_URL = "";
+const BEHOLD_FEED_URL = "https://feeds.behold.so/NsqH4QsvMjjpKrEg56m3";
 
 type Tamanho = { mediaUrl: string; width: number; height: number };
 
