@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import InstagramFeed from "@/components/InstagramFeed";
 import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
 import { formatarData, getShows } from "@/lib/midia-data";
 
 export const metadata: Metadata = {
@@ -23,33 +24,34 @@ async function ShowsGrid() {
 
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {shows.map((show) => (
-        <Link
-          key={show.id}
-          href={`/midia/${show.id}`}
-          className="group overflow-hidden rounded-2xl border border-border bg-surface transition duration-200 hover:-translate-y-1 hover:border-accent"
-        >
-          <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,#4a1748,#1a0c1f)]">
-            {show.capa && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={show.capa}
-                alt=""
-                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-              />
-            )}
-            <span className="absolute left-3 top-3 rounded-md bg-background/80 px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-gold">
-              {formatarData(show.data)}
-            </span>
-          </div>
-          <div className="p-5">
-            <h2 className="font-display text-3xl leading-none">{show.nome}</h2>
-            {show.local && <p className="mt-1 text-sm text-muted">{show.local}</p>}
-            <p className="mt-3 text-xs uppercase tracking-[0.1em] text-muted">
-              {show.fotos} {show.fotos === 1 ? "foto" : "fotos"} · {show.videos} {show.videos === 1 ? "vídeo" : "vídeos"}
-            </p>
-          </div>
-        </Link>
+      {shows.map((show, i) => (
+        <Reveal key={show.id} delay={(i % 3) * 120}>
+          <Link
+            href={`/midia/${show.id}`}
+            className="group block h-full overflow-hidden rounded-2xl border border-border bg-surface transition duration-200 hover:-translate-y-1 hover:border-accent"
+          >
+            <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,#4a1748,#1a0c1f)]">
+              {show.capa && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={show.capa}
+                  alt=""
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+              )}
+              <span className="absolute left-3 top-3 rounded-md bg-background/80 px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-gold">
+                {formatarData(show.data)}
+              </span>
+            </div>
+            <div className="p-5">
+              <h2 className="font-display text-3xl leading-none">{show.nome}</h2>
+              {show.local && <p className="mt-1 text-sm text-muted">{show.local}</p>}
+              <p className="mt-3 text-xs uppercase tracking-[0.1em] text-muted">
+                {show.fotos} {show.fotos === 1 ? "foto" : "fotos"} · {show.videos} {show.videos === 1 ? "vídeo" : "vídeos"}
+              </p>
+            </div>
+          </Link>
+        </Reveal>
       ))}
     </div>
   );
