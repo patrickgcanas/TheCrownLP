@@ -15,10 +15,14 @@ export type Depoimento = {
   papel: string | null;
   mensagem: string;
   avaliacao: number;
+  aprovado?: boolean;
   created_at: string;
 };
 
 export type ContatoMensagem = {
+  id?: string;
+  respondida?: boolean;
+  created_at?: string;
   nome: string;
   email: string;
   telefone: string | null;
@@ -26,10 +30,21 @@ export type ContatoMensagem = {
   mensagem: string;
 };
 
+export type Show = {
+  id: string;
+  nome: string;
+  local: string | null;
+  data: string;
+  capa_url: string | null;
+  created_at: string;
+};
+
 export type MidiaItem = {
   id: string;
-  tipo: "video" | "imagem";
-  titulo: string;
+  tipo: "video" | "imagem" | "instagram";
+  show_id?: string | null;
+  storage_path?: string | null;
+  titulo: string | null;
   descricao: string | null;
   url: string;
   thumbnail_url: string | null;

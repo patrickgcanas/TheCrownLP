@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Logo from "@/components/Logo";
+import NavLink from "@/components/NavLink";
 
 const links = [
   { href: "/", label: "Início" },
@@ -15,7 +15,6 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
@@ -23,20 +22,17 @@ export default function Navbar() {
         <Logo />
 
         <nav className="hidden items-center gap-7 text-xs font-medium uppercase tracking-[0.12em] text-muted md:flex">
-          {links.map((link) => {
-            const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`border-b-2 pb-1 transition-colors hover:text-foreground ${
-                  active ? "border-accent text-foreground" : "border-transparent"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+          {links.map((link) => (
+            <NavLink
+              key={link.href}
+              href={link.href}
+              className="border-b-2 pb-1 transition-colors hover:text-foreground"
+              activeClassName="border-accent text-foreground"
+              inactiveClassName="border-transparent"
+            >
+              {link.label}
+            </NavLink>
+          ))}
           <Link href="/contato" className="btn-primary !px-5 !py-2.5">
             Contrate a banda
           </Link>
