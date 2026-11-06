@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import { INSTAGRAM_URL } from "@/lib/instagram";
 
 export default function Footer() {
   return (
@@ -8,11 +9,11 @@ export default function Footer() {
         <div>
           <Logo size={36} />
           <p className="mt-3">Tributo a Linkin Park — shows em bares, eventos e prefeituras.</p>
-          <p className="font-display mt-1 text-lg tracking-[0.18em] text-gold">HEAVY IS THE CROWN</p>
+          <p className="font-display mt-1 text-base tracking-[0.12em] text-gold">HEAVY IS THE CROWN</p>
         </div>
 
         <div className="flex items-center gap-5 uppercase tracking-[0.1em] text-xs">
-          <a href="#" className="hover:text-foreground">
+          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="hover:text-foreground">
             Instagram
           </a>
           <a href="#" className="hover:text-foreground">

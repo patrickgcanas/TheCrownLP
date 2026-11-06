@@ -26,18 +26,12 @@
   --color-gold: var(--gold);
   --color-gold-dim: var(--gold-dim);
   --font-sans: var(--font-inter);
-  --font-display: var(--font-bebas);
+  --font-display: var(--font-inter-tight);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-}
-
-/* Títulos: letra condensada do pôster de show */
-.font-display {
-  letter-spacing: 0.02em;
-  font-weight: 400;
 }
 
 /* "THE CROWN": branco que escorre para o dourado do metal da coroa */
@@ -63,6 +57,16 @@ body {
 }
 
 @layer components {
+  /* Títulos: Inter Tight em negrito e letras juntas, como o "LINKIN PARK" de From Zero.
+     A Bebas Neue anterior só tinha maiúsculas; mantém os títulos sempre em caixa alta.
+     Fica na camada de componentes para classes como font-normal e tracking-* poderem ajustar. */
+  .font-display {
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    word-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
   .btn-primary {
     display: inline-flex;
     align-items: center;

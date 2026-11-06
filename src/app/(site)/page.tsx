@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HeroVideo from "@/components/HeroVideo";
+import InstagramFeed from "@/components/InstagramFeed";
 import IntroVideoSection from "@/components/IntroVideoSection";
 
 const destaques = [
@@ -15,11 +16,11 @@ export default function Home() {
         <HeroVideo />
         <div className="relative z-10 mx-auto w-full max-w-6xl px-4 py-20 text-center sm:px-6 md:text-left">
           <p className="eyebrow">Tributo a Linkin Park</p>
-          <h1 className="font-display mt-3 text-[4.5rem] leading-[0.88] sm:text-8xl lg:text-[7rem]">
+          <h1 className="font-display mt-3 text-[3.5rem] leading-[0.92] sm:text-7xl lg:text-[6.5rem]">
             <span className="text-gradient-crown block">THE CROWN</span>
-            <span className="text-gradient-accent block">LP TRIBUTE</span>
+            <span className="text-gradient-accent block font-normal">LP TRIBUTE</span>
           </h1>
-          <p className="font-display mt-6 flex items-center justify-center gap-3.5 text-2xl tracking-[0.18em] text-gold sm:text-3xl md:justify-start">
+          <p className="font-display mt-6 flex items-center justify-center gap-3.5 whitespace-nowrap text-lg tracking-[0.12em] text-gold sm:text-2xl md:justify-start">
             <span className="h-px w-12 bg-gradient-to-r from-transparent to-gold" />
             HEAVY IS THE CROWN
             <span className="h-px w-12 bg-gradient-to-l from-transparent to-gold" />
@@ -48,7 +49,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:grid-cols-3 sm:px-6">
           {destaques.map((d) => (
             <div key={d.titulo}>
-              <p className="font-display text-4xl text-accent">{d.titulo}</p>
+              <p className="font-display text-4xl text-accent sm:text-3xl">{d.titulo}</p>
               <p className="mt-2 text-sm text-muted">{d.texto}</p>
             </div>
           ))}
@@ -58,7 +59,7 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div>
-            <h2 className="font-display text-5xl leading-none">
+            <h2 className="font-display text-4xl leading-none sm:text-5xl">
               SOBRE A <span className="text-accent">BANDA</span>
             </h2>
             <p className="mt-3 max-w-xl text-muted">
@@ -72,10 +73,12 @@ export default function Home() {
         </div>
       </section>
 
+      <InstagramFeed />
+
       <section className="relative overflow-hidden border-t border-border bg-surface">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgb(214_63_184/0.22),transparent_60%)]" />
         <div className="relative mx-auto max-w-6xl px-4 py-20 text-center sm:px-6">
-          <h2 className="font-display text-5xl leading-none sm:text-6xl">
+          <h2 className="font-display text-4xl leading-none sm:text-[2.5rem]">
             LEVE A ENERGIA DO <span className="text-accent">LINKIN PARK</span> PRO SEU EVENTO
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted">

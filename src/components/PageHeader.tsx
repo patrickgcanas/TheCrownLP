@@ -12,7 +12,7 @@ export default function PageHeader({
   return (
     <header>
       <p className="eyebrow">{eyebrow}</p>
-      <h1 className="font-display mt-3 text-5xl leading-none sm:text-6xl">
+      <h1 className="font-display mt-3 text-3xl leading-none sm:text-6xl">
         {title} {highlight && <span className="text-accent">{highlight}</span>}
       </h1>
       {children && <div className="mt-4 max-w-2xl text-muted">{children}</div>}
