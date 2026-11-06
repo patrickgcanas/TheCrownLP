@@ -19,6 +19,49 @@ function Seta({ direcao, desativada, onClick }: { direcao: "anterior" | "proximo
   );
 }
 
+// Cartão de altura fixa: o texto mostra até 4 linhas e, se passar disso, aparece "Ler mais"
+function Cartao({ depoimento: d }: { depoimento: Depoimento }) {
+  const texto = useRef<HTMLParagraphElement>(null);
+  const [aberto, setAberto] = useState(false);
+  const [cortado, setCortado] = useState(false);
+
+  useEffect(() => {
+    const el = texto.current;
+    if (!el) return;
+    const medir = () => {
+      if (!el.classList.contains("line-clamp-4")) return;
+      setCortado(el.scrollHeight > el.clientHeight + 1);
+    };
+    medir();
+    window.addEventListener("resize", medir);
+    return () => window.removeEventListener("resize", medir);
+  }, []);
+
+  return (
+    <li className="flex w-[85%] shrink-0 snap-start flex-col self-start rounded-2xl border border-border border-l-4 border-l-gold bg-surface p-6 sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]">
+      <div className="text-sm tracking-[0.2em] text-gold" aria-label={`${d.avaliacao} de 5 estrelas`}>
+        {"★".repeat(d.avaliacao)}
+      </div>
+      <p ref={texto} className={`mt-3 leading-relaxed text-foreground ${aberto ? "" : "line-clamp-4 min-h-[6.5rem]"}`}>
+        “{d.mensagem}”
+      </p>
+      {/* Sem texto cortado, o botão fica invisível mas ocupa o espaço: todos os cartões com a mesma altura */}
+      <button
+        type="button"
+        onClick={() => setAberto(!aberto)}
+        aria-expanded={aberto}
+        aria-hidden={!cortado && !aberto}
+        tabIndex={cortado || aberto ? 0 : -1}
+        className={`mt-2 self-start text-xs font-semibold uppercase tracking-[0.1em] text-accent hover:underline ${cortado || aberto ? "" : "invisible"}`}
+      >
+        {aberto ? "Ler menos" : "Ler mais"}
+      </button>
+      <p className="mt-4 font-semibold">{d.nome}</p>
+      <p className="min-h-5 text-sm text-muted">{d.papel}</p>
+    </li>
+  );
+}
+
 // Depoimentos lado a lado: setas no computador, arrastar com o dedo no celular
 export default function DepoimentosCarrossel({ depoimentos }: { depoimentos: Depoimento[] }) {
   const trilho = useRef<HTMLUListElement>(null);
@@ -54,20 +97,10 @@ export default function DepoimentosCarrossel({ depoimentos }: { depoimentos: Dep
     <div>
       <ul
         ref={trilho}
-        className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex snap-x snap-mandatory items-start gap-5 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {depoimentos.map((d) => (
-          <li
-            key={d.id}
-            className="flex w-full shrink-0 snap-start flex-col rounded-2xl border border-border border-l-4 border-l-gold bg-surface p-7 md:w-[calc((100%-1.25rem)/2)]"
-          >
-            <div className="tracking-[0.2em] text-gold" aria-label={`${d.avaliacao} de 5 estrelas`}>
-              {"★".repeat(d.avaliacao)}
-            </div>
-            <p className="mt-4 flex-1 text-lg leading-relaxed text-foreground">“{d.mensagem}”</p>
-            <p className="mt-6 font-semibold">{d.nome}</p>
-            {d.papel && <p className="text-sm text-muted">{d.papel}</p>}
-          </li>
+          <Cartao key={d.id} depoimento={d} />
         ))}
       </ul>
 
