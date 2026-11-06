@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "História — The Crown LP",
@@ -83,15 +84,17 @@ export default function HistoriaPage() {
         </p>
 
         <ul className="mt-10 grid gap-5 sm:grid-cols-2">
-          {integrantes.map((m) => (
-            <li
-              key={m.nome}
-              className="rounded-2xl border border-border border-l-4 border-l-gold bg-surface p-6"
-            >
-              <p className="eyebrow">{m.instrumento}</p>
-              <h3 className="font-display mt-2 text-2xl leading-tight">{m.nome}</h3>
-              <p className="mt-0.5 text-sm font-semibold uppercase tracking-[0.1em] text-accent">{m.personagem}</p>
-              <p className="mt-4 leading-relaxed text-muted">{m.texto}</p>
+          {integrantes.map((m, i) => (
+            <li key={m.nome}>
+              <Reveal
+                delay={(i % 2) * 120}
+                className="h-full rounded-2xl border border-border border-l-4 border-l-gold bg-surface p-6"
+              >
+                <p className="eyebrow">{m.instrumento}</p>
+                <h3 className="font-display mt-2 text-2xl leading-tight">{m.nome}</h3>
+                <p className="mt-0.5 text-sm font-semibold uppercase tracking-[0.1em] text-accent">{m.personagem}</p>
+                <p className="mt-4 leading-relaxed text-muted">{m.texto}</p>
+              </Reveal>
             </li>
           ))}
         </ul>

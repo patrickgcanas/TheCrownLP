@@ -1,6 +1,8 @@
 import Link from "next/link";
+import HeroParallax from "@/components/HeroParallax";
 import HeroVideo from "@/components/HeroVideo";
 import InstagramFeed from "@/components/InstagramFeed";
+import Reveal from "@/components/Reveal";
 
 const destaques = [
   { titulo: "+SHOWS", texto: "Em bares, casas noturnas e eventos pelo Brasil." },
@@ -12,7 +14,7 @@ export default function Home() {
     <div>
       <section className="relative flex min-h-[88vh] items-center overflow-hidden">
         <HeroVideo />
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-4 py-20 text-center sm:px-6 md:text-left">
+        <HeroParallax className="relative z-10 mx-auto w-full max-w-6xl px-4 py-20 text-center will-change-transform sm:px-6 md:text-left">
           <p className="eyebrow">Tributo a Linkin Park</p>
           <h1 className="font-display mt-3 text-[3.5rem] leading-[0.92] sm:text-7xl lg:text-[6.5rem]">
             <span className="text-gradient-crown block">THE CROWN</span>
@@ -33,7 +35,7 @@ export default function Home() {
               Assista aos vídeos
             </Link>
           </div>
-        </div>
+        </HeroParallax>
       </section>
 
       <div className="divider-gold mx-auto max-w-6xl" />
@@ -42,17 +44,17 @@ export default function Home() {
 
       <section className="border-y border-border bg-surface">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:grid-cols-2 sm:px-6">
-          {destaques.map((d) => (
-            <div key={d.titulo}>
+          {destaques.map((d, i) => (
+            <Reveal key={d.titulo} delay={i * 120}>
               <p className="font-display text-4xl text-accent sm:text-3xl">{d.titulo}</p>
               <p className="mt-2 text-sm text-muted">{d.texto}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+        <Reveal className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div>
             <h2 className="font-display text-4xl leading-none sm:text-5xl">
               SOBRE A <span className="text-accent">BANDA</span>
@@ -65,12 +67,12 @@ export default function Home() {
           <Link href="/historia" className="text-sm font-semibold uppercase tracking-[0.1em] text-gold hover:underline">
             Ler a história completa →
           </Link>
-        </div>
+        </Reveal>
       </section>
 
       <section className="relative overflow-hidden border-t border-border bg-surface">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgb(214_63_184/0.22),transparent_60%)]" />
-        <div className="relative mx-auto max-w-6xl px-4 py-20 text-center sm:px-6">
+        <Reveal className="relative mx-auto max-w-6xl px-4 py-20 text-center sm:px-6">
           <h2 className="font-display text-4xl leading-none sm:text-[2.5rem]">
             LEVE A ENERGIA DO <span className="text-accent">LINKIN PARK</span> PRO SEU EVENTO
           </h2>
@@ -81,7 +83,7 @@ export default function Home() {
           <Link href="/contrate" className="btn-primary mt-8">
             Fale com a banda
           </Link>
-        </div>
+        </Reveal>
       </section>
     </div>
   );
