@@ -34,7 +34,7 @@ export default function HistoriaPage() {
       </div>
 
       <div className="mt-16 rounded-2xl border border-border border-l-4 border-l-gold bg-surface p-8">
-        <h2 className="font-display text-3xl">CONTEÚDO EM CONSTRUÇÃO</h2>
+        <h2 className="font-display text-xl sm:text-3xl">CONTEÚDO EM CONSTRUÇÃO</h2>
         <p className="mt-3 text-muted">
           Este texto é um ponto de partida — a história completa (ano de
           formação, integrantes, bastidores, fotos) entra aqui conforme
