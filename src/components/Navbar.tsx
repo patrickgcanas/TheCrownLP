@@ -33,7 +33,7 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
-          <Link href="/contato" className="btn-primary !px-5 !py-2.5">
+          <Link href="/contrate" className="btn-primary !px-5 !py-2.5">
             Contrate a banda
           </Link>
         </nav>
@@ -66,7 +66,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link href="/contato" onClick={() => setOpen(false)} className="btn-primary mt-2">
+          <Link href="/contrate" onClick={() => setOpen(false)} className="btn-primary mt-2">
             Contrate a banda
           </Link>
         </nav>

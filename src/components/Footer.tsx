@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import { whatsappUrl } from "@/lib/contatos";
 import { INSTAGRAM_URL } from "@/lib/instagram";
 
 export default function Footer() {
@@ -16,9 +17,11 @@ export default function Footer() {
           <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="hover:text-foreground">
             Instagram
           </a>
-          <a href="#" className="hover:text-foreground">
-            WhatsApp
-          </a>
+          {whatsappUrl && (
+            <a href={whatsappUrl} target="_blank" rel="noreferrer" className="hover:text-foreground">
+              WhatsApp
+            </a>
+          )}
           <Link href="/contato" className="hover:text-foreground">
             Contato
           </Link>

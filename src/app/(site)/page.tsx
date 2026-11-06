@@ -1,7 +1,6 @@
 import Link from "next/link";
 import HeroVideo from "@/components/HeroVideo";
 import InstagramFeed from "@/components/InstagramFeed";
-import IntroVideoSection from "@/components/IntroVideoSection";
 
 const destaques = [
   { titulo: "+SHOWS", texto: "Em bares, casas noturnas e eventos pelo Brasil." },
@@ -31,7 +30,7 @@ export default function Home() {
             públicas.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3 md:justify-start">
-            <Link href="/contato" className="btn-primary">
+            <Link href="/contrate" className="btn-primary">
               Contrate a banda
             </Link>
             <Link href="/midia" className="btn-ghost">
@@ -73,8 +72,6 @@ export default function Home() {
         </div>
       </section>
 
-      <IntroVideoSection />
-
       <section className="relative overflow-hidden border-t border-border bg-surface">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgb(214_63_184/0.22),transparent_60%)]" />
         <div className="relative mx-auto max-w-6xl px-4 py-20 text-center sm:px-6">
@@ -85,7 +82,7 @@ export default function Home() {
             Bares, festas privadas, eventos corporativos ou apresentações
             públicas — fale com a gente e monte o show ideal.
           </p>
-          <Link href="/contato" className="btn-primary mt-8">
+          <Link href="/contrate" className="btn-primary mt-8">
             Fale com a banda
           </Link>
         </div>

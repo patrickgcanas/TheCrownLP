@@ -9,8 +9,6 @@ export type ActionState = {
   message: string;
 };
 
-const idleState: ActionState = { status: "idle", message: "" };
-
 export async function enviarDepoimento(
   _prev: ActionState,
   formData: FormData,
@@ -120,5 +118,3 @@ export async function enviarContato(
     message: "Mensagem enviada! Vamos responder o mais rápido possível.",
   };
 }
-
-export { idleState };

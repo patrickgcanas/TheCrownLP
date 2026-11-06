@@ -40,10 +40,12 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 - Logo só no canto (menu/rodapé), nunca grande no topo — a banda não gostou.
 - Fundo do topo: `public/videos/hero-loop.mp4`, trecho do redemoinho da intro 2× mais lento, com desfoque leve. A banda achou rápido demais a 1× e lento demais a 4×.
 - Mote **HEAVY IS THE CROWN** em dourado abaixo do título.
+- A seção "Abertura do show" (vídeo da intro com play) foi **retirada da página inicial** a pedido da banda (nov/2026). O vídeo continua no Storage e a variável `NEXT_PUBLIC_INTRO_VIDEO_URL` ficou sem uso.
+- "use server" (`src/lib/actions.ts`) só pode exportar funções async: exportar um objeto quebrou os formulários em produção (erro 500).
 
 ## Estado atual (atualizar quando mudar)
 
-- **Em produção (`main`, publicado em nov/2026)**: visual novo com fonte Inter Tight, páginas Início, História (com integrantes), Mídia (álbuns por show + Instagram), Depoimentos, Contato; formulários gravando no Supabase; painel em `/admin`.
+- **Em produção (`main`, publicado em nov/2026)**: visual novo com fonte Inter Tight, páginas Início, História (com integrantes), Mídia (álbuns por show + Instagram), Depoimentos, Contato (só botões: Instagram, WhatsApp, e-mail — dados em `src/lib/contatos.ts`), Contrate a banda (`/contrate`, formulário); formulários gravando no Supabase; painel em `/admin`.
   - Painel: login por **e-mail e senha** (Supabase `signInWithPassword`) só para `thecrownlptribute@gmail.com` (e-mail da banda; um acesso compartilhado pela banda). Trocou do link mágico em nov/2026 porque os links falhavam/esbarravam no limite de e-mails. Senha se troca em `/admin/senha`; se esquecerem, apagar o usuário em Supabase → Authentication → Users e criar de novo (Add user → Create new user, Auto Confirm). Painel com shows/álbuns com upload de fotos e vídeos e links do Instagram, aprovação de depoimentos, caixa de contatos, aviso por e-mail (Resend).
   - E-mails do Supabase Auth saem pelo Resend via SMTP próprio no Supabase (Auth → Emails → SMTP: `smtp.resend.com:465`, usuário `resend`, remetente `onboarding@resend.dev`), porque o e-mail padrão do Supabase grátis só manda 2 por hora. Limite em Auth → Rate Limits: 30 e-mails/h. Sem domínio próprio, o Resend só entrega para o e-mail da conta (o da banda), o que basta.
   - Ativação feita em nov/2026: SQL `0003_admin.sql` rodado, URLs de redirect no Supabase Auth, conta no Resend com o e-mail da banda, `ADMIN_EMAIL` e `RESEND_API_KEY` na Vercel (Production e Preview). Testado de ponta a ponta (login, criar show, upload de 15 fotos, capa).
@@ -52,7 +54,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 
 ## Pendências
 
-- Link do WhatsApp do rodapé (`src/components/Footer.tsx`) está `#` — falta o número.
+- Número do WhatsApp: preencher `WHATSAPP_NUMERO` em `src/lib/contatos.ts`; enquanto vazio, o botão some da página Contato e do rodapé.
 - Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
 - Trocar a senha do banco do Supabase (foi exposta numa conversa).
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.
