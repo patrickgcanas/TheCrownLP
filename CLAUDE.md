@@ -41,6 +41,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 - Fundo do topo: `public/videos/hero-loop.mp4`, trecho do redemoinho da intro 2× mais lento, com desfoque leve. A banda achou rápido demais a 1× e lento demais a 4×.
 - Mote **HEAVY IS THE CROWN** em dourado abaixo do título.
 - A seção "Abertura do show" (vídeo da intro com play) foi **retirada da página inicial** a pedido da banda (nov/2026). O vídeo continua no Storage e a variável `NEXT_PUBLIC_INTRO_VIDEO_URL` ficou sem uso.
+- Efeitos ao rolar (aprovados em nov/2026): `src/components/Reveal.tsx` (surgir subindo, com `delay` para cascata) e `src/components/HeroParallax.tsx` (topo com profundidade). Desligados com "reduzir movimento" — o PC de casa do Patrick está assim, então para conferir use o celular ou emule no puppeteer.
 - "use server" (`src/lib/actions.ts`) só pode exportar funções async: exportar um objeto quebrou os formulários em produção (erro 500).
 
 ## Estado atual (atualizar quando mudar)
