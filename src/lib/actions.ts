@@ -60,7 +60,7 @@ export async function enviarDepoimento(
 
   return {
     status: "success",
-    message: "Obrigado! Seu depoimento foi enviado e vai aparecer aqui depois de uma revisão rápida.",
+    message: "Obrigado! Seu depoimento foi enviado e vai aparecer na página inicial depois de uma revisão rápida da banda.",
   };
 }
 

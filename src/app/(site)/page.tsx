@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DepoimentosSection from "@/components/DepoimentosSection";
 import HeroParallax from "@/components/HeroParallax";
 import HeroVideo from "@/components/HeroVideo";
 import InstagramFeed from "@/components/InstagramFeed";
@@ -69,6 +70,8 @@ export default function Home() {
           </Link>
         </Reveal>
       </section>
+
+      <DepoimentosSection />
 
       <section className="relative overflow-hidden border-t border-border bg-surface">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgb(214_63_184/0.22),transparent_60%)]" />

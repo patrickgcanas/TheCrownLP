@@ -3,6 +3,7 @@
 import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "./auth";
+import { DEPOIMENTOS_TAG } from "./depoimentos-data";
 import { MIDIA_TAG, instagramEmbedUrl } from "./midia-data";
 
 export type FormState = { status: "idle" | "success" | "error"; message: string };
@@ -160,7 +161,7 @@ export async function excluirItem(formData: FormData) {
 async function atualizarDepoimento(formData: FormData, aprovado: boolean) {
   const { supabase } = await requireAdmin();
   await supabase.from("depoimentos").update({ aprovado }).eq("id", texto(formData, "id"));
-  revalidatePath("/depoimentos");
+  updateTag(DEPOIMENTOS_TAG);
   revalidatePath("/admin", "layout");
 }
 
@@ -175,7 +176,7 @@ export async function ocultarDepoimento(formData: FormData) {
 export async function excluirDepoimento(formData: FormData) {
   const { supabase } = await requireAdmin();
   await supabase.from("depoimentos").delete().eq("id", texto(formData, "id"));
-  revalidatePath("/depoimentos");
+  updateTag(DEPOIMENTOS_TAG);
   revalidatePath("/admin", "layout");
 }
 
