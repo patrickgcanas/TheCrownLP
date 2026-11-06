@@ -60,9 +60,12 @@ export default function Home() {
             <h2 className="font-display text-4xl leading-none sm:text-5xl">
               SOBRE A <span className="text-accent">BANDA</span>
             </h2>
-            <p className="mt-3 max-w-xl text-muted">
-              Conheça a história da The Crown LP e o que nos motiva a subir ao
-              palco com o som do Linkin Park.
+            <p className="mt-4 max-w-2xl leading-relaxed text-muted">
+              A The Crown LP é o resultado puro da nossa paixão pelo Linkin Park.
+              O que começou apenas como um encontro entre amigos para tocar nossas
+              músicas favoritas acabou se transformando em um projeto sério.
+              Criamos esse tributo para levar a verdadeira intensidade da banda
+              aos palcos brasileiros.
             </p>
           </div>
           <Link href="/historia" className="text-sm font-semibold uppercase tracking-[0.1em] text-gold hover:underline">
