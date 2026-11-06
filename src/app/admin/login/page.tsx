@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 
 const erros: Record<string, string> = {
   acesso: "Esse e-mail não tem acesso ao painel.",
-  link: "O link expirou ou já foi usado. Peça um novo abaixo.",
 };
 
 async function ErroMensagem({ searchParams }: { searchParams: PageProps<"/admin/login">["searchParams"] }) {
@@ -31,7 +30,7 @@ export default function LoginPage({ searchParams }: PageProps<"/admin/login">) {
           <h1 className="font-display text-4xl leading-none">
             PAINEL DA <span className="text-accent">BANDA</span>
           </h1>
-          <p className="mt-2 text-sm text-muted">Digite o e-mail da banda e enviamos um link de acesso. Sem senha.</p>
+          <p className="mt-2 text-sm text-muted">Entre com o e-mail e a senha da banda.</p>
           <div className="mt-6">
             <Suspense>
               <ErroMensagem searchParams={searchParams} />

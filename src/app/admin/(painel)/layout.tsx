@@ -35,11 +35,16 @@ export default function PainelLayout({ children }: { children: React.ReactNode }
               Painel
             </span>
           </div>
-          <form action={sair}>
-            <button type="submit" className="text-xs font-semibold uppercase tracking-[0.1em] text-muted hover:text-foreground">
-              Sair
-            </button>
-          </form>
+          <div className="flex items-center gap-5">
+            <Link href="/admin/senha" className="text-xs font-semibold uppercase tracking-[0.1em] text-muted hover:text-foreground">
+              Trocar senha
+            </Link>
+            <form action={sair}>
+              <button type="submit" className="text-xs font-semibold uppercase tracking-[0.1em] text-muted hover:text-foreground">
+                Sair
+              </button>
+            </form>
+          </div>
         </div>
         <nav className="mx-auto flex max-w-6xl gap-6 overflow-x-auto px-4 text-xs font-semibold uppercase tracking-[0.12em] text-muted sm:px-6">
           <AdminNavLink href="/admin/shows">Shows</AdminNavLink>

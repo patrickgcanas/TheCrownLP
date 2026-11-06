@@ -27,7 +27,7 @@ export async function proxy(request: NextRequest) {
 
   // Checagem rápida: sem sessão, nem mostra a moldura do painel. A checagem de verdade
   // (se o e-mail é admin) acontece em requireAdmin() e nas policies do banco.
-  const publica = request.nextUrl.pathname.startsWith("/admin/login") || request.nextUrl.pathname.startsWith("/admin/auth");
+  const publica = request.nextUrl.pathname.startsWith("/admin/login");
   if (!data.user && !publica) {
     return NextResponse.redirect(new URL("/admin/login", request.url));
   }

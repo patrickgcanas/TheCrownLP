@@ -10,13 +10,15 @@ Leva uns 15 minutos. Faça na ordem.
    - Copie pelo VS Code, não pelo terminal — assim os acentos não quebram.
    - Resultado esperado: `Success. No rows returned`.
 
-## 2. Login (Supabase → Authentication → URL Configuration)
+## 2. Login (Supabase → Authentication → Users)
 
-- **Site URL**: `https://thecrownlp.vercel.app`
-- **Redirect URLs** → Add URL, uma de cada vez:
-  - `https://thecrownlp.vercel.app/admin/auth/callback`
-  - `http://localhost:3000/admin/auth/callback`
-  - `https://*-patrickgcanas-projects.vercel.app/admin/auth/callback` (prévias da Vercel)
+O painel entra com e-mail e senha.
+
+1. **Add user → Create new user**.
+2. E-mail da banda, uma senha forte, e marque **Auto Confirm User**.
+3. Se o e-mail já estiver na lista (de um login antigo), apague esse usuário antes.
+
+Para trocar a senha depois: no painel, **Trocar senha**.
 
 ## 3. Avisos por e-mail (Resend)
 
