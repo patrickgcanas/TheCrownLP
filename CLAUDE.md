@@ -55,6 +55,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 
 ## Pendências
 
+- Próximos passos sugeridos (nov/2026), em ordem: prévia ao compartilhar o link (imagem Open Graph), agenda de próximos shows na Início (editável no painel), domínio próprio (ex.: thecrownlp.com.br no registro.br), repertório, material para contratantes (PDF), Google Search Console + Vercel Analytics.
 - Número do WhatsApp: preencher `WHATSAPP_NUMERO` em `src/lib/contatos.ts`; enquanto vazio, o botão some da página Contato e do rodapé.
 - Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
 - Trocar a senha do banco do Supabase (foi exposta numa conversa).
