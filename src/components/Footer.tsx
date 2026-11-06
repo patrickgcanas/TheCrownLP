@@ -12,7 +12,7 @@ export default function Footer() {
         </div>
 
         <div className="flex items-center gap-5 uppercase tracking-[0.1em] text-xs">
-          <a href="#" className="hover:text-foreground">
+          <a href="https://www.instagram.com/thecrown.lp/" target="_blank" rel="noreferrer" className="hover:text-foreground">
             Instagram
           </a>
           <a href="#" className="hover:text-foreground">
