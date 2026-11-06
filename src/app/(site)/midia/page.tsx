@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import InstagramFeed from "@/components/InstagramFeed";
 import PageHeader from "@/components/PageHeader";
 import { formatarData, getShows } from "@/lib/midia-data";
 
@@ -63,6 +64,10 @@ export default function MidiaPage() {
 
       <div className="mt-12">
         <ShowsGrid />
+      </div>
+
+      <div className="-mx-4 mt-8 sm:-mx-6">
+        <InstagramFeed />
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HeroVideo from "@/components/HeroVideo";
+import InstagramFeed from "@/components/InstagramFeed";
 import IntroVideoSection from "@/components/IntroVideoSection";
 
 const destaques = [
@@ -71,6 +72,8 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <InstagramFeed />
 
       <section className="relative overflow-hidden border-t border-border bg-surface">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_120%,rgb(214_63_184/0.22),transparent_60%)]" />

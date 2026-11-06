@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import { INSTAGRAM_URL } from "@/lib/instagram";
 
 export default function Footer() {
   return (
@@ -12,7 +13,7 @@ export default function Footer() {
         </div>
 
         <div className="flex items-center gap-5 uppercase tracking-[0.1em] text-xs">
-          <a href="https://www.instagram.com/thecrown.lp/" target="_blank" rel="noreferrer" className="hover:text-foreground">
+          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="hover:text-foreground">
             Instagram
           </a>
           <a href="#" className="hover:text-foreground">
