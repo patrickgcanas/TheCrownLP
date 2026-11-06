@@ -11,7 +11,7 @@ export default function DepoimentoForm() {
 
   return (
     <form action={action} className="space-y-5 rounded-2xl border border-border bg-surface p-8">
-      <h2 className="font-display text-4xl">DEIXE SEU <span className="text-accent">DEPOIMENTO</span></h2>
+      <h2 className="font-display text-2xl sm:text-4xl">DEIXE SEU <span className="text-accent">DEPOIMENTO</span></h2>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>

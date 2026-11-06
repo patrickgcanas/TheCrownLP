@@ -10,7 +10,7 @@ export default function IntroVideoSection() {
   return (
     <section className="mx-auto max-w-5xl px-4 py-20 sm:px-6">
       <p className="eyebrow">Abertura do show</p>
-      <h2 className="font-display mt-3 text-5xl leading-none">
+      <h2 className="font-display mt-3 text-4xl leading-none sm:text-5xl">
         É ASSIM QUE A GENTE <span className="text-accent">SOBE AO PALCO</span>
       </h2>
       <p className="mt-3 max-w-2xl text-muted">Dá o play e sente a energia.</p>

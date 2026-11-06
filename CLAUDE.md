@@ -34,7 +34,10 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 ## Identidade visual (aprovada pela banda)
 
 - Cores no `:root` de `src/app/globals.css`: fundo `#120a14`, magenta `#d63fb8` (destaque), dourado `#e3a95c` (detalhes). Tirar sempre desses tokens.
-- Títulos em Bebas Neue (`font-display`), texto em Inter. Classes prontas: `btn-primary`, `btn-ghost`, `eyebrow`, `field`, `text-gradient-crown`, `text-gradient-accent`.
+- Títulos em **Archivo 900** (`font-display`: largura 80%, caixa alta), a fonte livre (OFL) mais parecida com a escrita do Linkin Park; texto corrido em Inter. Classes prontas: `btn-primary`, `btn-ghost`, `eyebrow`, `field`.
+  - Fontes "Linkin Park" do dafont/fontmeme foram descartadas: licença só para uso pessoal ou cópia da Arial da Monotype, e sem acentos.
+  - O título do topo ("THE CROWN / LP TRIBUTE") é um SVG em `src/components/HeroTitle.tsx`, com o contorno da Archivo (largura 95%) e pontas no R e no N de "CROWN", como as do logo do Linkin Park. Não editar os caminhos à mão.
+  - A banda pediu para **não mudar a estrutura/layout** ao trocar a fonte: comparar antes/depois (desktop e celular) e manter as mesmas quebras de linha.
 - Logo só no canto (menu/rodapé), nunca grande no topo — a banda não gostou.
 - Fundo do topo: `public/videos/hero-loop.mp4`, trecho do redemoinho da intro 2× mais lento, com desfoque leve. A banda achou rápido demais a 1× e lento demais a 4×.
 - Mote **HEAVY IS THE CROWN** em dourado abaixo do título.

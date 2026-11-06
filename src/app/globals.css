@@ -26,7 +26,7 @@
   --color-gold: var(--gold);
   --color-gold-dim: var(--gold-dim);
   --font-sans: var(--font-inter);
-  --font-display: var(--font-bebas);
+  --font-display: var(--font-archivo);
 }
 
 body {
@@ -34,27 +34,14 @@ body {
   color: var(--foreground);
 }
 
-/* Títulos: letra condensada do pôster de show */
+/* Títulos: Archivo Black, larga e pesada, letras juntas como na escrita do Linkin Park */
 .font-display {
-  letter-spacing: 0.02em;
-  font-weight: 400;
-}
-
-/* "THE CROWN": branco que escorre para o dourado do metal da coroa */
-.text-gradient-crown {
-  background: linear-gradient(180deg, #ffffff 0%, #f6e3f0 50%, var(--gold) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* "LP TRIBUTE": magenta das joias com brilho */
-.text-gradient-accent {
-  background: linear-gradient(90deg, #f07ad9 0%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 18px rgb(214 63 184 / 0.4));
+  font-weight: 900;
+  font-stretch: 80%;
+  letter-spacing: -0.01em;
+  word-spacing: 0.08em;
+  /* a Bebas Neue anterior só tinha maiúsculas; mantém títulos sempre em caixa alta */
+  text-transform: uppercase;
 }
 
 .divider-gold {
