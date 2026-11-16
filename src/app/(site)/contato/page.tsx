@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
-import { EMAIL_BANDA, whatsappUrl } from "@/lib/contatos";
+import { EMAIL_BANDA, WHATSAPP_EXIBICAO, whatsappUrl } from "@/lib/contatos";
 import { INSTAGRAM_USUARIO } from "@/lib/instagram";
 
 export const metadata: Metadata = {
@@ -41,8 +41,8 @@ const meios = [
   },
   whatsappUrl && {
     nome: "WhatsApp",
-    detalhe: "Resposta mais rápida",
-    texto: "Chama a gente no WhatsApp.",
+    detalhe: WHATSAPP_EXIBICAO,
+    texto: "Chama a gente no WhatsApp, a resposta é mais rápida.",
     href: whatsappUrl,
     icone: icones.whatsapp,
   },

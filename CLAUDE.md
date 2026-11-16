@@ -54,7 +54,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 
 ## Estado atual (atualizar quando mudar)
 
-- **Em produção (`main`, publicado em nov/2026)**: visual novo com fonte Inter Tight, páginas Início, História (com integrantes), Mídia (álbuns por show + Instagram), Depoimentos (só o formulário; os aprovados aparecem em carrossel na Início, depois de "Sobre a banda" — `DepoimentosSection`/`DepoimentosCarrossel`, cache com tag `depoimentos`), Contato (só botões: Instagram, WhatsApp, e-mail — dados em `src/lib/contatos.ts`), Contrate a banda (`/contrate`, formulário); formulários gravando no Supabase; painel em `/admin`.
+- **Em produção (`main`, publicado em nov/2026)**: visual novo com fonte Inter Tight, páginas Início, História (com integrantes), Mídia (álbuns por show + Instagram), Depoimentos (só o formulário; os aprovados aparecem em carrossel na Início, depois de "Sobre a banda" — `DepoimentosSection`/`DepoimentosCarrossel`, cache com tag `depoimentos`), Contato (só botões: Instagram, WhatsApp (11) 93359-7888, e-mail — dados em `src/lib/contatos.ts`; WhatsApp também no rodapé), Contrate a banda (`/contrate`, formulário); formulários gravando no Supabase; painel em `/admin`.
   - Painel: login por **e-mail e senha** (Supabase `signInWithPassword`) só para `thecrownlptribute@gmail.com` (e-mail da banda; um acesso compartilhado pela banda). Trocou do link mágico em nov/2026 porque os links falhavam/esbarravam no limite de e-mails. Senha se troca em `/admin/senha`; se esquecerem, apagar o usuário em Supabase → Authentication → Users e criar de novo (Add user → Create new user, Auto Confirm). Painel com shows/álbuns com upload de fotos e vídeos e links do Instagram, aprovação de depoimentos, caixa de contatos, aviso por e-mail (Resend).
   - E-mails do Supabase Auth saem pelo Resend via SMTP próprio no Supabase (Auth → Emails → SMTP: `smtp.resend.com:465`, usuário `resend`, remetente `onboarding@resend.dev`), porque o e-mail padrão do Supabase grátis só manda 2 por hora. Limite em Auth → Rate Limits: 30 e-mails/h. Sem domínio próprio, o Resend só entrega para o e-mail da conta (o da banda), o que basta.
   - Ativação feita em nov/2026: SQL `0003_admin.sql` rodado, URLs de redirect no Supabase Auth, conta no Resend com o e-mail da banda, `ADMIN_EMAIL` e `RESEND_API_KEY` na Vercel (Production e Preview). Testado de ponta a ponta (login, criar show, upload de 15 fotos, capa).
@@ -67,7 +67,6 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 
 - Supabase pausou de novo em ~16/11/2026 mesmo com o Vercel Cron (dados intactos, restaurado). Adicionado o GitHub Actions como segundo despertador; conferir em GitHub → Actions se está rodando verde.
 - Próximos passos sugeridos (nov/2026), em ordem: prévia ao compartilhar o link (imagem Open Graph), agenda de próximos shows na Início (editável no painel), repertório, material para contratantes (PDF), Google Search Console + Vercel Analytics.
-- Número do WhatsApp: preencher `WHATSAPP_NUMERO` em `src/lib/contatos.ts`; enquanto vazio, o botão some da página Contato e do rodapé.
 - Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
 - Trocar a senha do banco do Supabase (foi exposta numa conversa).
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.
