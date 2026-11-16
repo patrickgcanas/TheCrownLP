@@ -65,13 +65,24 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 - Contador de visitas: Vercel Web Analytics (`<Analytics />` no layout de `(site)`, dentro de Suspense). Precisa estar ligado no painel da Vercel (Analytics → Enable).
 - Vídeos: a banda não tem YouTube; usa Instagram. Vídeos ficam no Instagram (embed por link); só poucos destaques hospedados no Storage.
 
-## Pendências
+## Pendências (atualizado em 16/11/2026)
 
-- Supabase pausou de novo em ~16/11/2026 mesmo com o Vercel Cron (dados intactos, restaurado). Adicionado o GitHub Actions como segundo despertador; conferir em GitHub → Actions se está rodando verde.
-- Próximos passos sugeridos (nov/2026), em ordem: repertório, material para contratantes (PDF), Google Search Console + Vercel Analytics.
+Com o Patrick (passos já explicados a ele):
+- **Rodar `supabase/migrations/0004_agenda.sql`** no SQL Editor do Supabase (copiar pelo VS Code). Sem isso a aba Agenda do painel mostra um aviso e a seção "Próximos shows" não aparece. Depois, cadastrar o primeiro show (Manifesto, 20/11).
+- **Google Search Console**: propriedade do tipo Domínio `thecrownlp.com.br`, verificação por registro TXT no registro.br (nome em branco, sem apagar o TXT do SPF). Depois de verificado, enviar o sitemap `https://www.thecrownlp.com.br/sitemap.xml` em Sitemaps.
+- Confirmar que o Vercel Web Analytics está ligado (Vercel → Analytics → Enable).
+- Conferir em GitHub → Actions se o "Manter Supabase ativo" está rodando verde (o Supabase pausou em ~16/11/2026 mesmo com o Vercel Cron).
+
+Depende de material da banda:
+- Repertório (lista de músicas) → página nova.
+- Material para contratantes (PDF): release, fotos em alta, ficha técnica de som e palco.
 - Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
-- Trocar a senha do banco do Supabase (foi exposta numa conversa).
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.
+
+Segurança:
+- Trocar a senha do banco do Supabase (foi exposta numa conversa).
+
+Ideia para depois: cartaz (imagem) opcional em cada data da agenda.
 
 ## Como trabalhar
 
