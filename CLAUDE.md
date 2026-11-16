@@ -28,9 +28,9 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
   - `A` (em branco) → `216.198.79.1` e `CNAME www` → `e9da82c4332f355f.vercel-dns-017.com.` (Vercel). Principal é **www.thecrownlp.com.br**; o domínio sem www redireciona (308).
   - `MX 10 mx1.improvmx.com`, `MX 20 mx2.improvmx.com`, `TXT "v=spf1 include:spf.improvmx.com -all"`: **ImprovMX** (grátis, conta com o e-mail da banda) encaminha qualquer `*@thecrownlp.com.br` para `thecrownlptribute@gmail.com`.
   - A banda decidiu **não** verificar o domínio no Resend: os avisos do site continuam saindo de `onboarding@resend.dev` para o Gmail da banda.
-  - **No ar desde 17/11/2026**: DNS propagado (delegação em `b/c.sec.dns.br`), certificado emitido, `https://www.thecrownlp.com.br` responde 200 e o domínio sem www redireciona. A Vercel passou a usar o domínio próprio como URL de produção, então `siteUrl` (sitemap, links) já sai com `www.thecrownlp.com.br` sem precisar de `NEXT_PUBLIC_SITE_URL`. O despertador do Supabase continua chamando `thecrownlp.vercel.app` (não depende de DNS).
+  - **No ar desde 16/11/2026**: DNS propagado (delegação em `b/c.sec.dns.br`), certificado emitido, `https://www.thecrownlp.com.br` responde 200 e o domínio sem www redireciona. A Vercel passou a usar o domínio próprio como URL de produção, então `siteUrl` (sitemap, links) já sai com `www.thecrownlp.com.br` sem precisar de `NEXT_PUBLIC_SITE_URL`. O despertador do Supabase continua chamando `thecrownlp.vercel.app` (não depende de DNS).
   - No Windows, `curl` às vezes falha no TLS desse domínio (erro 35, schannel); com Node/navegador funciona. Não é problema do site.
-  - E-mail `contato@thecrownlp.com.br` testado em 17/11/2026 (ImprovMX verde, chegou no Gmail da banda) e é o que aparece no site (`EMAIL_BANDA` em `src/lib/contatos.ts`). O login do painel e os avisos continuam no Gmail da banda.
+  - E-mail `contato@thecrownlp.com.br` testado em 16/11/2026 (ImprovMX verde, chegou no Gmail da banda) e é o que aparece no site (`EMAIL_BANDA` em `src/lib/contatos.ts`). O login do painel e os avisos continuam no Gmail da banda.
   - Os avisos do site (Resend, `onboarding@resend.dev`) caíam no Spam do Gmail: orientado a marcar "Not spam" e criar filtro "Never send it to Spam" para esse remetente.
 - Supabase: projeto `ixdvsdqqecwvoazhmgip`, região São Paulo, plano gratuito.
   - Migrations em `supabase/migrations/`, rodadas **manualmente** no SQL Editor (sem CLI/integração GitHub). Copiar o SQL pelo VS Code; colar via terminal quebra acentos.
@@ -60,13 +60,14 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
   - Ativação feita em nov/2026: SQL `0003_admin.sql` rodado, URLs de redirect no Supabase Auth, conta no Resend com o e-mail da banda, `ADMIN_EMAIL` e `RESEND_API_KEY` na Vercel (Production e Preview). Testado de ponta a ponta (login, criar show, upload de 15 fotos, capa).
 - Instagram: feed do Behold (behold.so, conta com o e-mail da banda, plano grátis: 6 posts, atualiza 1x/dia, 1.200 views/mês). Link em `src/lib/instagram.ts`; aparece na Início e na Mídia. A conta @thecrown.lp é Profissional (exigência do Behold).
 - Posts do Instagram nos álbuns (`InstagramCard`): cartão no visual do site (capa + play); o embed oficial (branco, sem tema escuro) só abre numa janela `<dialog>` ao clicar. Capa: `thumbnail_url` (cópia guardada no Storage pelo painel ao adicionar o link) > feed do Behold > `/api/capa-instagram/[codigo]` (o servidor busca `instagram.com/p/<código>/media/?size=l`; o navegador não pode carregar direto por causa do `Cross-Origin-Resource-Policy`).
+- Prévia ao compartilhar o link (WhatsApp/Instagram): `src/app/opengraph-image.jpg` (1200×630, foto da banda no palco + nome + mote, montada em HTML e fotografada com o Chrome) e `opengraph-image.alt.txt`; `metadataBase` no `src/app/layout.tsx`. Cada página usa o próprio título. O WhatsApp guarda a prévia antiga em cache por um tempo.
 - Contador de visitas: Vercel Web Analytics (`<Analytics />` no layout de `(site)`, dentro de Suspense). Precisa estar ligado no painel da Vercel (Analytics → Enable).
 - Vídeos: a banda não tem YouTube; usa Instagram. Vídeos ficam no Instagram (embed por link); só poucos destaques hospedados no Storage.
 
 ## Pendências
 
 - Supabase pausou de novo em ~16/11/2026 mesmo com o Vercel Cron (dados intactos, restaurado). Adicionado o GitHub Actions como segundo despertador; conferir em GitHub → Actions se está rodando verde.
-- Próximos passos sugeridos (nov/2026), em ordem: prévia ao compartilhar o link (imagem Open Graph), agenda de próximos shows na Início (editável no painel), repertório, material para contratantes (PDF), Google Search Console + Vercel Analytics.
+- Próximos passos sugeridos (nov/2026), em ordem: agenda de próximos shows na Início (editável no painel), repertório, material para contratantes (PDF), Google Search Console + Vercel Analytics.
 - Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
 - Trocar a senha do banco do Supabase (foi exposta numa conversa).
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.
