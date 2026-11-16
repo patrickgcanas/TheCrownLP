@@ -28,7 +28,9 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
   - `A` (em branco) → `216.198.79.1` e `CNAME www` → `e9da82c4332f355f.vercel-dns-017.com.` (Vercel). Principal é **www.thecrownlp.com.br**; o domínio sem www redireciona (308).
   - `MX 10 mx1.improvmx.com`, `MX 20 mx2.improvmx.com`, `TXT "v=spf1 include:spf.improvmx.com -all"`: **ImprovMX** (grátis, conta com o e-mail da banda) encaminha qualquer `*@thecrownlp.com.br` para `thecrownlptribute@gmail.com`.
   - A banda decidiu **não** verificar o domínio no Resend: os avisos do site continuam saindo de `onboarding@resend.dev` para o Gmail da banda.
-  - Pendente quando propagar: conferir Vercel "Valid Configuration", ImprovMX verde, teste de e-mail; trocar `EMAIL_BANDA` em `src/lib/contatos.ts` para `contato@thecrownlp.com.br`; considerar `NEXT_PUBLIC_SITE_URL=https://www.thecrownlp.com.br` na Vercel.
+  - **No ar desde 17/11/2026**: DNS propagado (delegação em `b/c.sec.dns.br`), certificado emitido, `https://www.thecrownlp.com.br` responde 200 e o domínio sem www redireciona. A Vercel passou a usar o domínio próprio como URL de produção, então `siteUrl` (sitemap, links) já sai com `www.thecrownlp.com.br` sem precisar de `NEXT_PUBLIC_SITE_URL`. O despertador do Supabase continua chamando `thecrownlp.vercel.app` (não depende de DNS).
+  - No Windows, `curl` às vezes falha no TLS desse domínio (erro 35, schannel); com Node/navegador funciona. Não é problema do site.
+  - Pendente: conferir ImprovMX verde e mandar e-mail de teste para `contato@thecrownlp.com.br`; se chegar, trocar `EMAIL_BANDA` em `src/lib/contatos.ts` para `contato@thecrownlp.com.br`.
 - Supabase: projeto `ixdvsdqqecwvoazhmgip`, região São Paulo, plano gratuito.
   - Migrations em `supabase/migrations/`, rodadas **manualmente** no SQL Editor (sem CLI/integração GitHub). Copiar o SQL pelo VS Code; colar via terminal quebra acentos.
   - "Automatically expose new tables" está **desligado**: toda tabela nova precisa de `grant` explícito além das policies RLS.
