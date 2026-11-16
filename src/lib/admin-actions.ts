@@ -4,7 +4,7 @@ import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "./auth";
 import { DEPOIMENTOS_TAG } from "./depoimentos-data";
-import { MIDIA_TAG, instagramEmbedUrl } from "./midia-data";
+import { MIDIA_TAG, instagramPermalink } from "./midia-data";
 
 export type FormState = { status: "idle" | "success" | "error"; message: string };
 
@@ -103,7 +103,7 @@ export async function adicionarInstagram(_prev: FormState, formData: FormData): 
   const link = texto(formData, "link");
   const titulo = texto(formData, "titulo");
 
-  if (!instagramEmbedUrl(link)) {
+  if (!instagramPermalink(link)) {
     return {
       status: "error",
       message: "Esse link não parece de um post do Instagram. Copie pelo botão “Compartilhar → Copiar link” do post.",

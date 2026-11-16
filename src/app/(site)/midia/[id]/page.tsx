@@ -2,23 +2,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import PhotoGallery from "@/components/PhotoGallery";
-import { formatarData, getShow, instagramEmbedUrl } from "@/lib/midia-data";
+import InstagramEmbed from "@/components/InstagramEmbed";
+import { formatarData, getShow, instagramPermalink } from "@/lib/midia-data";
 import type { MidiaItem } from "@/lib/supabase";
 
 function VideoItem({ item }: { item: MidiaItem }) {
   if (item.tipo === "instagram") {
-    const embed = instagramEmbedUrl(item.url);
-    if (!embed) return null;
+    const permalink = instagramPermalink(item.url);
+    if (!permalink) return null;
     return (
-      <div className="overflow-hidden rounded-2xl border border-border bg-surface">
-        <iframe
-          src={embed}
-          title={item.titulo ?? "Post do Instagram"}
-          className="h-[640px] w-full bg-white"
-          loading="lazy"
-          allowFullScreen
-        />
-        {item.titulo && <p className="p-4 text-sm text-muted">{item.titulo}</p>}
+      <div>
+        <InstagramEmbed permalink={permalink} />
+        {item.titulo && <p className="mt-3 px-1 text-sm text-muted">{item.titulo}</p>}
       </div>
     );
   }

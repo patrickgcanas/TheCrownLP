@@ -55,10 +55,10 @@ export function formatarData(data: string) {
   return new Date(ano, mes - 1, dia).toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" });
 }
 
-// Aceita link de post, reel ou IGTV e devolve o endereço do embed oficial
-export function instagramEmbedUrl(link: string) {
+// Aceita link de post, reel ou IGTV (com ou sem @ no meio, com ?igsh=...) e devolve o link limpo do post
+export function instagramPermalink(link: string) {
   const match = link.match(/instagram\.com\/(?:[\w.]+\/)?(p|reel|reels|tv)\/([A-Za-z0-9_-]+)/);
   if (!match) return null;
   const tipo = match[1] === "reels" ? "reel" : match[1];
-  return `https://www.instagram.com/${tipo}/${match[2]}/embed`;
+  return `https://www.instagram.com/${tipo}/${match[2]}/`;
 }
