@@ -61,13 +61,14 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 - Instagram: feed do Behold (behold.so, conta com o e-mail da banda, plano grátis: 6 posts, atualiza 1x/dia, 1.200 views/mês). Link em `src/lib/instagram.ts`; aparece na Início e na Mídia. A conta @thecrown.lp é Profissional (exigência do Behold).
 - Posts do Instagram nos álbuns (`InstagramCard`): cartão no visual do site (capa + play); o embed oficial (branco, sem tema escuro) só abre numa janela `<dialog>` ao clicar. Capa: `thumbnail_url` (cópia guardada no Storage pelo painel ao adicionar o link) > feed do Behold > `/api/capa-instagram/[codigo]` (o servidor busca `instagram.com/p/<código>/media/?size=l`; o navegador não pode carregar direto por causa do `Cross-Origin-Resource-Policy`).
 - Prévia ao compartilhar o link (WhatsApp/Instagram): `src/app/opengraph-image.jpg` (1200×630, foto da banda no palco + nome + mote, montada em HTML e fotografada com o Chrome) e `opengraph-image.alt.txt`; `metadataBase` no `src/app/layout.tsx`. Cada página usa o próprio título. O WhatsApp guarda a prévia antiga em cache por um tempo.
+- Agenda de próximos shows (nov/2026): tabela `agenda` (`supabase/migrations/0004_agenda.sql`), painel em `/admin/agenda` (data, horário, local, cidade, link, observação), seção "Próximos shows" na Início logo abaixo do topo (`AgendaSection`, cache com tag `agenda`, renova de hora em hora). Mostra de hoje em diante (horário de Brasília); sem datas, a seção some.
 - Contador de visitas: Vercel Web Analytics (`<Analytics />` no layout de `(site)`, dentro de Suspense). Precisa estar ligado no painel da Vercel (Analytics → Enable).
 - Vídeos: a banda não tem YouTube; usa Instagram. Vídeos ficam no Instagram (embed por link); só poucos destaques hospedados no Storage.
 
 ## Pendências
 
 - Supabase pausou de novo em ~16/11/2026 mesmo com o Vercel Cron (dados intactos, restaurado). Adicionado o GitHub Actions como segundo despertador; conferir em GitHub → Actions se está rodando verde.
-- Próximos passos sugeridos (nov/2026), em ordem: agenda de próximos shows na Início (editável no painel), repertório, material para contratantes (PDF), Google Search Console + Vercel Analytics.
+- Próximos passos sugeridos (nov/2026), em ordem: repertório, material para contratantes (PDF), Google Search Console + Vercel Analytics.
 - Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
 - Trocar a senha do banco do Supabase (foi exposta numa conversa).
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.

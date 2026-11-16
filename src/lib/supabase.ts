@@ -39,6 +39,17 @@ export type Show = {
   created_at: string;
 };
 
+export type DataAgenda = {
+  id: string;
+  data: string; // AAAA-MM-DD
+  horario: string | null; // HH:MM:SS
+  local: string;
+  cidade: string | null;
+  link: string | null;
+  detalhe: string | null;
+  created_at: string;
+};
+
 export type MidiaItem = {
   id: string;
   tipo: "video" | "imagem" | "instagram";

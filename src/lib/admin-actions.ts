@@ -2,6 +2,7 @@
 
 import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
+import { AGENDA_TAG } from "./agenda-data";
 import { requireAdmin } from "./auth";
 import { DEPOIMENTOS_TAG } from "./depoimentos-data";
 import { capasDoFeed, codigoInstagram } from "./instagram";
@@ -185,6 +186,72 @@ export async function excluirItem(formData: FormData) {
   await supabase.from("shows").update({ capa_url: null }).eq("id", showId).eq("capa_url", item.url);
 
   atualizarMidia(showId);
+}
+
+// ---------- Agenda ----------
+
+function atualizarAgenda() {
+  updateTag(AGENDA_TAG);
+  revalidatePath("/admin/agenda");
+}
+
+// Lê e confere os campos do formulário da agenda. Devolve o erro em texto ou os dados prontos para salvar.
+function dadosDaAgenda(formData: FormData) {
+  const data = texto(formData, "data");
+  const local = texto(formData, "local");
+  const horario = texto(formData, "horario");
+  let link = texto(formData, "link");
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(data) || !local) return "Preencha a data e o local do show.";
+  if (horario && !/^\d{2}:\d{2}(:\d{2})?$/.test(horario)) return "Horário inválido.";
+
+  if (link) {
+    if (!/^https?:\/\//i.test(link)) link = `https://${link}`;
+    try {
+      new URL(link);
+    } catch {
+      return "Esse link não parece válido. Copie o endereço completo da página do evento.";
+    }
+  }
+
+  return {
+    data,
+    local,
+    horario: horario || null,
+    cidade: texto(formData, "cidade") || null,
+    link: link || null,
+    detalhe: texto(formData, "detalhe") || null,
+  };
+}
+
+export async function criarDataAgenda(_prev: FormState, formData: FormData): Promise<FormState> {
+  const { supabase } = await requireAdmin();
+  const dados = dadosDaAgenda(formData);
+  if (typeof dados === "string") return { status: "error", message: dados };
+
+  const { error } = await supabase.from("agenda").insert(dados);
+  if (error) return { status: "error", message: "Não foi possível salvar a data." };
+
+  atualizarAgenda();
+  return { status: "success", message: "Show adicionado à agenda!" };
+}
+
+export async function editarDataAgenda(_prev: FormState, formData: FormData): Promise<FormState> {
+  const { supabase } = await requireAdmin();
+  const dados = dadosDaAgenda(formData);
+  if (typeof dados === "string") return { status: "error", message: dados };
+
+  const { error } = await supabase.from("agenda").update(dados).eq("id", texto(formData, "id"));
+  if (error) return { status: "error", message: "Não foi possível salvar." };
+
+  atualizarAgenda();
+  return { status: "success", message: "Alterações salvas." };
+}
+
+export async function excluirDataAgenda(formData: FormData) {
+  const { supabase } = await requireAdmin();
+  await supabase.from("agenda").delete().eq("id", texto(formData, "id"));
+  atualizarAgenda();
 }
 
 // ---------- Depoimentos ----------

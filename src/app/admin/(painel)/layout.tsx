@@ -48,6 +48,7 @@ export default function PainelLayout({ children }: { children: React.ReactNode }
         </div>
         <nav className="mx-auto flex max-w-6xl gap-6 overflow-x-auto px-4 text-xs font-semibold uppercase tracking-[0.12em] text-muted sm:px-6">
           <AdminNavLink href="/admin/shows">Shows</AdminNavLink>
+          <AdminNavLink href="/admin/agenda">Agenda</AdminNavLink>
           <AdminNavLink href="/admin/depoimentos">
             Depoimentos
             <Suspense>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AgendaSection from "@/components/AgendaSection";
 import DepoimentosSection from "@/components/DepoimentosSection";
 import HeroParallax from "@/components/HeroParallax";
 import HeroVideo from "@/components/HeroVideo";
@@ -40,6 +41,8 @@ export default function Home() {
       </section>
 
       <div className="divider-gold mx-auto max-w-6xl" />
+
+      <AgendaSection />
 
       <InstagramFeed />
 
