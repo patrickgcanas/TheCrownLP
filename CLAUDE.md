@@ -23,7 +23,12 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 ## Infra
 
 - GitHub: `patrickgcanas/TheCrownLP` (branch principal `main`).
-- Vercel: projeto `thecrownlp`, https://thecrownlp.vercel.app. Sem domínio próprio ainda; `src/lib/site.ts` usa o domínio de produção da Vercel automaticamente.
+- Vercel: projeto `thecrownlp`, https://thecrownlp.vercel.app. `src/lib/site.ts` usa o domínio de produção da Vercel automaticamente.
+- **Domínio `thecrownlp.com.br`** (registrado no registro.br em 16/11/2026, CPF do Patrick, vence 16/11/2027). DNS no próprio registro.br em **modo avançado** (Configurar zona DNS; não aceita "@" — nome em branco = o próprio domínio):
+  - `A` (em branco) → `216.198.79.1` e `CNAME www` → `e9da82c4332f355f.vercel-dns-017.com.` (Vercel). Principal é **www.thecrownlp.com.br**; o domínio sem www redireciona (308).
+  - `MX 10 mx1.improvmx.com`, `MX 20 mx2.improvmx.com`, `TXT "v=spf1 include:spf.improvmx.com -all"`: **ImprovMX** (grátis, conta com o e-mail da banda) encaminha qualquer `*@thecrownlp.com.br` para `thecrownlptribute@gmail.com`.
+  - A banda decidiu **não** verificar o domínio no Resend: os avisos do site continuam saindo de `onboarding@resend.dev` para o Gmail da banda.
+  - Pendente quando propagar: conferir Vercel "Valid Configuration", ImprovMX verde, teste de e-mail; trocar `EMAIL_BANDA` em `src/lib/contatos.ts` para `contato@thecrownlp.com.br`; considerar `NEXT_PUBLIC_SITE_URL=https://www.thecrownlp.com.br` na Vercel.
 - Supabase: projeto `ixdvsdqqecwvoazhmgip`, região São Paulo, plano gratuito.
   - Migrations em `supabase/migrations/`, rodadas **manualmente** no SQL Editor (sem CLI/integração GitHub). Copiar o SQL pelo VS Code; colar via terminal quebra acentos.
   - "Automatically expose new tables" está **desligado**: toda tabela nova precisa de `grant` explícito além das policies RLS.
@@ -55,7 +60,8 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 
 ## Pendências
 
-- Próximos passos sugeridos (nov/2026), em ordem: prévia ao compartilhar o link (imagem Open Graph), agenda de próximos shows na Início (editável no painel), domínio próprio (ex.: thecrownlp.com.br no registro.br), repertório, material para contratantes (PDF), Google Search Console + Vercel Analytics.
+- Supabase pausou de novo em ~16/11/2026 mesmo com o cron `/api/manter-ativo` (dados intactos, restaurado). Investigar se o Vercel Cron está rodando (Settings → Cron Jobs) e, se preciso, outro jeito de manter ativo.
+- Próximos passos sugeridos (nov/2026), em ordem: prévia ao compartilhar o link (imagem Open Graph), agenda de próximos shows na Início (editável no painel), repertório, material para contratantes (PDF), Google Search Console + Vercel Analytics.
 - Número do WhatsApp: preencher `WHATSAPP_NUMERO` em `src/lib/contatos.ts`; enquanto vazio, o botão some da página Contato e do rodapé.
 - Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
 - Trocar a senha do banco do Supabase (foi exposta numa conversa).
