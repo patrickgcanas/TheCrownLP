@@ -64,3 +64,20 @@ export async function getPostsInstagram(): Promise<PostInstagram[]> {
     return [];
   }
 }
+
+// Código do post no link (ex.: "DexXUyBB_6f" em instagram.com/reel/DexXUyBB_6f/?igsh=...)
+export function codigoInstagram(link: string) {
+  return link.match(/instagram\.com\/(?:[\w.]+\/)?(?:p|reel|reels|tv)\/([A-Za-z0-9_-]+)/)?.[1] ?? null;
+}
+
+// Capa de um post, se ele estiver entre os últimos do feed do Behold. Usado para mostrar
+// os posts nos álbuns com o visual do site em vez do quadro branco do Instagram.
+export async function capasDoFeed(): Promise<Map<string, string>> {
+  const posts = await getPostsInstagram();
+  const capas = new Map<string, string>();
+  for (const post of posts) {
+    const codigo = codigoInstagram(post.permalink);
+    if (codigo) capas.set(codigo, post.imagem);
+  }
+  return capas;
+}

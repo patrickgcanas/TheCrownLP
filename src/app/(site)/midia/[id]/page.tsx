@@ -2,20 +2,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import PhotoGallery from "@/components/PhotoGallery";
-import InstagramEmbed from "@/components/InstagramEmbed";
+import InstagramCard from "@/components/InstagramCard";
+import { capasDoFeed, codigoInstagram } from "@/lib/instagram";
 import { formatarData, getShow, instagramPermalink } from "@/lib/midia-data";
 import type { MidiaItem } from "@/lib/supabase";
 
-function VideoItem({ item }: { item: MidiaItem }) {
+function VideoItem({ item, capas }: { item: MidiaItem; capas: Map<string, string> }) {
   if (item.tipo === "instagram") {
     const permalink = instagramPermalink(item.url);
     if (!permalink) return null;
-    return (
-      <div>
-        <InstagramEmbed permalink={permalink} />
-        {item.titulo && <p className="mt-3 px-1 text-sm text-muted">{item.titulo}</p>}
-      </div>
-    );
+    const codigo = codigoInstagram(item.url);
+    // Capa: cópia guardada pelo painel > feed do Behold > capa buscada no Instagram pelo servidor do site
+    const capa =
+      item.thumbnail_url ?? (codigo ? (capas.get(codigo) ?? `/api/capa-instagram/${codigo}`) : null);
+    return <InstagramCard permalink={permalink} capa={capa} legenda={item.titulo} />;
   }
 
   return (
@@ -32,6 +32,7 @@ async function Album({ id }: { id: string }) {
   if (!album) notFound();
 
   const { show, itens } = album;
+  const capas = await capasDoFeed();
   const videos = itens.filter((i) => i.tipo !== "imagem");
   const fotos = itens.filter((i) => i.tipo === "imagem");
 
@@ -56,7 +57,7 @@ async function Album({ id }: { id: string }) {
           </h2>
           <div className="mt-6 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {videos.map((item) => (
-              <VideoItem key={item.id} item={item} />
+              <VideoItem key={item.id} item={item} capas={capas} />
             ))}
           </div>
         </section>

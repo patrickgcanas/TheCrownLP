@@ -4,6 +4,7 @@ import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "./auth";
 import { DEPOIMENTOS_TAG } from "./depoimentos-data";
+import { capasDoFeed, codigoInstagram } from "./instagram";
 import { MIDIA_TAG, instagramPermalink } from "./midia-data";
 
 export type FormState = { status: "idle" | "success" | "error"; message: string };
@@ -110,9 +111,39 @@ export async function adicionarInstagram(_prev: FormState, formData: FormData): 
     };
   }
 
-  const { error } = await supabase
-    .from("midia")
-    .insert({ show_id: showId, tipo: "instagram", url: link, titulo: titulo || null });
+  // Guarda uma cópia da capa no Storage: do feed do Behold, se o post estiver entre os últimos,
+  // ou do endereço público de capa do Instagram. Os links originais expiram depois de alguns dias.
+  let capa: { url: string; caminho: string } | null = null;
+  try {
+    const codigo = codigoInstagram(link);
+    const origem = codigo
+      ? ((await capasDoFeed()).get(codigo) ?? `https://www.instagram.com/p/${codigo}/media/?size=l`)
+      : undefined;
+    if (codigo && origem) {
+      const res = await fetch(origem, { headers: { "User-Agent": "Mozilla/5.0" } });
+      const tipo = res.headers.get("content-type") ?? "";
+      if (res.ok && tipo.startsWith("image/")) {
+        const caminho = `shows/${showId}/instagram-${codigo}.${tipo.includes("webp") ? "webp" : "jpg"}`;
+        const { error: erroUpload } = await supabase.storage
+          .from("midia")
+          .upload(caminho, await res.arrayBuffer(), { contentType: tipo, upsert: true });
+        if (!erroUpload) {
+          capa = { caminho, url: supabase.storage.from("midia").getPublicUrl(caminho).data.publicUrl };
+        }
+      }
+    }
+  } catch {
+    capa = null;
+  }
+
+  const { error } = await supabase.from("midia").insert({
+    show_id: showId,
+    tipo: "instagram",
+    url: link,
+    titulo: titulo || null,
+    thumbnail_url: capa?.url ?? null,
+    storage_path: capa?.caminho ?? null,
+  });
 
   if (error) return { status: "error", message: "Não foi possível adicionar o post." };
 
