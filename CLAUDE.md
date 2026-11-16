@@ -30,7 +30,8 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
   - A banda decidiu **não** verificar o domínio no Resend: os avisos do site continuam saindo de `onboarding@resend.dev` para o Gmail da banda.
   - **No ar desde 17/11/2026**: DNS propagado (delegação em `b/c.sec.dns.br`), certificado emitido, `https://www.thecrownlp.com.br` responde 200 e o domínio sem www redireciona. A Vercel passou a usar o domínio próprio como URL de produção, então `siteUrl` (sitemap, links) já sai com `www.thecrownlp.com.br` sem precisar de `NEXT_PUBLIC_SITE_URL`. O despertador do Supabase continua chamando `thecrownlp.vercel.app` (não depende de DNS).
   - No Windows, `curl` às vezes falha no TLS desse domínio (erro 35, schannel); com Node/navegador funciona. Não é problema do site.
-  - Pendente: conferir ImprovMX verde e mandar e-mail de teste para `contato@thecrownlp.com.br`; se chegar, trocar `EMAIL_BANDA` em `src/lib/contatos.ts` para `contato@thecrownlp.com.br`.
+  - E-mail `contato@thecrownlp.com.br` testado em 17/11/2026 (ImprovMX verde, chegou no Gmail da banda) e é o que aparece no site (`EMAIL_BANDA` em `src/lib/contatos.ts`). O login do painel e os avisos continuam no Gmail da banda.
+  - Os avisos do site (Resend, `onboarding@resend.dev`) caíam no Spam do Gmail: orientado a marcar "Not spam" e criar filtro "Never send it to Spam" para esse remetente.
 - Supabase: projeto `ixdvsdqqecwvoazhmgip`, região São Paulo, plano gratuito.
   - Migrations em `supabase/migrations/`, rodadas **manualmente** no SQL Editor (sem CLI/integração GitHub). Copiar o SQL pelo VS Code; colar via terminal quebra acentos.
   - "Automatically expose new tables" está **desligado**: toda tabela nova precisa de `grant` explícito além das policies RLS.
