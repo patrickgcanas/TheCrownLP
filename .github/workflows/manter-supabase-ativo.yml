@@ -1,0 +1,24 @@
+# Segundo "despertador" do Supabase gratuito (o primeiro é o Vercel Cron em vercel.json).
+# O plano grátis pausa o projeto após ~7 dias sem uso; isto chama /api/manter-ativo duas vezes por dia.
+# Dá para rodar na mão em GitHub → Actions → "Manter Supabase ativo" → Run workflow.
+name: Manter Supabase ativo
+
+on:
+  schedule:
+    - cron: "17 3,15 * * *" # 00:17 e 12:17 no horário de Brasília
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Chamar /api/manter-ativo
+        run: |
+          for tentativa in 1 2 3; do
+            if curl -fsSL --max-time 60 https://thecrownlp.vercel.app/api/manter-ativo; then
+              exit 0
+            fi
+            sleep 30
+          done
+          echo "::error::O Supabase não respondeu. Pode estar pausado: entre no painel do Supabase e clique em Restore project."
+          exit 1

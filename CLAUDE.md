@@ -33,7 +33,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
   - Migrations em `supabase/migrations/`, rodadas **manualmente** no SQL Editor (sem CLI/integração GitHub). Copiar o SQL pelo VS Code; colar via terminal quebra acentos.
   - "Automatically expose new tables" está **desligado**: toda tabela nova precisa de `grant` explícito além das policies RLS.
   - Bucket público `midia` (vídeo de abertura e, com o painel, fotos/vídeos dos shows). Limite de 50 MB por arquivo no plano grátis.
-  - **O plano grátis pausa o projeto após ~7 dias sem uso** (aconteceu em nov/2026: o endereço some do DNS, o vídeo de abertura e os formulários param). Para reativar: painel do Supabase → Restore project. Prevenção: Vercel Cron diário (`vercel.json`) chama `/api/manter-ativo`, que faz uma consulta leve. Se pausar mesmo assim, conferir em Vercel → Settings → Cron Jobs se está rodando.
+  - **O plano grátis pausa o projeto após ~7 dias sem uso** (aconteceu em nov/2026: o endereço some do DNS, o vídeo de abertura e os formulários param). Para reativar: painel do Supabase → Restore project. Prevenção: Vercel Cron diário (`vercel.json`) e GitHub Actions 2x/dia (`.github/workflows/manter-supabase-ativo.yml`, adicionado em 16/11/2026 depois de pausar de novo) chamam `/api/manter-ativo`, que faz uma consulta leve. Se o Action falhar, o GitHub manda e-mail ao dono do repositório. Se pausar mesmo assim, conferir em Vercel → Settings → Cron Jobs se está rodando.
 - Variáveis de ambiente: ver `.env.local.example`. O `.env.local` não vai para o git.
 
 ## Identidade visual (aprovada pela banda)
@@ -60,7 +60,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 
 ## Pendências
 
-- Supabase pausou de novo em ~16/11/2026 mesmo com o cron `/api/manter-ativo` (dados intactos, restaurado). Investigar se o Vercel Cron está rodando (Settings → Cron Jobs) e, se preciso, outro jeito de manter ativo.
+- Supabase pausou de novo em ~16/11/2026 mesmo com o Vercel Cron (dados intactos, restaurado). Adicionado o GitHub Actions como segundo despertador; conferir em GitHub → Actions se está rodando verde.
 - Próximos passos sugeridos (nov/2026), em ordem: prévia ao compartilhar o link (imagem Open Graph), agenda de próximos shows na Início (editável no painel), repertório, material para contratantes (PDF), Google Search Console + Vercel Analytics.
 - Número do WhatsApp: preencher `WHATSAPP_NUMERO` em `src/lib/contatos.ts`; enquanto vazio, o botão some da página Contato e do rodapé.
 - Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
