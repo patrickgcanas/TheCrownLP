@@ -25,7 +25,8 @@ function VideoItem({ item }: { item: MidiaItem }) {
 
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-surface">
-      <video src={item.url} controls preload="metadata" playsInline className="aspect-video w-full bg-black" />
+      {/* Sem proporção fixa: vídeo de celular (em pé) e deitado aparecem no próprio formato. #t=0.1 mostra o primeiro quadro antes do play */}
+      <video src={`${item.url}#t=0.1`} controls preload="metadata" playsInline className="block max-h-[80vh] w-full bg-black" />
       {item.titulo && <p className="p-4 text-sm text-muted">{item.titulo}</p>}
     </div>
   );
@@ -58,7 +59,7 @@ async function Album({ id }: { id: string }) {
           <h2 className="font-display text-4xl">
             VÍDEOS <span className="text-accent">{videos.length}</span>
           </h2>
-          <div className="mt-6 grid items-start gap-6 md:grid-cols-2">
+          <div className="mt-6 grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {videos.map((item) => (
               <VideoItem key={item.id} item={item} />
             ))}
