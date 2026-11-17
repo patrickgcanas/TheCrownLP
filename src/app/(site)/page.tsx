@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import AgendaSection from "@/components/AgendaSection";
 import DepoimentosSection from "@/components/DepoimentosSection";
@@ -5,6 +6,30 @@ import HeroParallax from "@/components/HeroParallax";
 import HeroVideo from "@/components/HeroVideo";
 import InstagramFeed from "@/components/InstagramFeed";
 import Reveal from "@/components/Reveal";
+import { EMAIL_BANDA } from "@/lib/contatos";
+import { INSTAGRAM_URL } from "@/lib/instagram";
+import { siteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+// Ficha da banda para o Google (dados estruturados schema.org): deixa claro que "The Crown LP"
+// é uma banda tributo a Linkin Park, e não a banda The Crown nem a série da Netflix
+const fichaDaBanda = {
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  name: "The Crown LP",
+  alternateName: ["The Crown LP Tribute", "The Crown LP Tributo a Linkin Park"],
+  description:
+    "Banda tributo a Linkin Park. Shows em bares, casas de show, eventos privados e apresentações públicas. Heavy is the Crown.",
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo.png`,
+  image: `${siteUrl}/opengraph-image.jpg`,
+  email: EMAIL_BANDA,
+  genre: ["Rock", "Nu metal", "Rock alternativo"],
+  sameAs: [INSTAGRAM_URL],
+};
 
 const destaques = [
   { titulo: "+SHOWS", texto: "Em bares, casas noturnas e eventos pelo Brasil." },
@@ -14,6 +39,10 @@ const destaques = [
 export default function Home() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(fichaDaBanda).replace(/</g, "\\u003c") }}
+      />
       <section className="relative flex min-h-[88vh] items-center overflow-hidden">
         <HeroVideo />
         <HeroParallax className="relative z-10 mx-auto w-full max-w-6xl px-4 py-20 text-center will-change-transform sm:px-6 md:text-left">

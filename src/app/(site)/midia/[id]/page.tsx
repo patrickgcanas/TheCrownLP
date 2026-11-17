@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -89,6 +90,22 @@ function AlbumFallback() {
       </div>
     </div>
   );
+}
+
+// Título e endereço oficial de cada álbum (para o Google e para a prévia ao compartilhar)
+export async function generateMetadata({ params }: PageProps<"/midia/[id]">): Promise<Metadata> {
+  const { id } = await params;
+  const dados = await getShow(id);
+  if (!dados) return {};
+
+  const { show } = dados;
+  return {
+    title: `${show.nome} | Fotos e vídeos | The Crown LP`,
+    description: `Fotos e vídeos do show da The Crown LP, tributo a Linkin Park, em ${show.nome}${
+      show.local ? ` (${show.local})` : ""
+    }.`,
+    alternates: { canonical: `/midia/${id}` },
+  };
 }
 
 export default function AlbumPage({ params }: PageProps<"/midia/[id]">) {

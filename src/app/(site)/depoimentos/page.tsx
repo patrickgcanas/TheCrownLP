@@ -3,6 +3,7 @@ import DepoimentoForm from "@/components/DepoimentoForm";
 import PageHeader from "@/components/PageHeader";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/depoimentos" },
   title: "Depoimentos | The Crown LP",
   description: "Foi a um show da The Crown LP? Deixe seu depoimento.",
 };
