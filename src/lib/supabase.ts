@@ -47,6 +47,8 @@ export type DataAgenda = {
   cidade: string | null;
   link: string | null;
   detalhe: string | null;
+  cartaz_url?: string | null; // imagem do cartaz no Storage (bucket midia, pasta agenda/)
+  cartaz_path?: string | null;
   created_at: string;
 };
 

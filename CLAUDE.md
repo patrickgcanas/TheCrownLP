@@ -62,7 +62,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 - Instagram: feed do Behold (behold.so, conta com o e-mail da banda, plano grátis: 6 posts, atualiza 1x/dia, 1.200 views/mês). Link em `src/lib/instagram.ts`; aparece na Início e na Mídia. A conta @thecrown.lp é Profissional (exigência do Behold).
 - Posts do Instagram nos álbuns (`InstagramCard`): cartão no visual do site (capa + play); o embed oficial (branco, sem tema escuro) só abre numa janela `<dialog>` ao clicar. Capa: `thumbnail_url` (cópia guardada no Storage pelo painel ao adicionar o link) > feed do Behold > `/api/capa-instagram/[codigo]` (o servidor busca `instagram.com/p/<código>/media/?size=l`; o navegador não pode carregar direto por causa do `Cross-Origin-Resource-Policy`).
 - Prévia ao compartilhar o link (WhatsApp/Instagram): `src/app/opengraph-image.jpg` (1200×630, foto da banda no palco + nome + mote, montada em HTML e fotografada com o Chrome) e `opengraph-image.alt.txt`; `metadataBase` no `src/app/layout.tsx`. Cada página usa o próprio título. O WhatsApp guarda a prévia antiga em cache por um tempo.
-- Agenda de próximos shows (nov/2026): tabela `agenda` (`supabase/migrations/0004_agenda.sql`), painel em `/admin/agenda` (data, horário, local, cidade, link, observação), seção "Próximos shows" na Início logo abaixo do topo (`AgendaSection`, cache com tag `agenda`, renova de hora em hora). Mostra de hoje em diante (horário de Brasília); sem datas, a seção some. Links de ingresso passam por `limparLink` (tira `_gl`, `utm_*`, `fbclid`...); no painel aparece só o nome do site do link. SQL `0004_agenda.sql` rodado em 16/11/2026; primeiro show cadastrado: Manifesto Bar, 20/11.
+- Agenda de próximos shows (nov/2026): tabela `agenda` (`supabase/migrations/0004_agenda.sql`), painel em `/admin/agenda` (data, horário, local, cidade, link, observação), seção "Próximos shows" na Início logo abaixo do topo (`AgendaSection`, cache com tag `agenda`, renova de hora em hora). Mostra de hoje em diante (horário de Brasília); sem datas, a seção some. Links de ingresso passam por `limparLink` (tira `_gl`, `utm_*`, `fbclid`...); no painel aparece só o nome do site do link. SQL `0004_agenda.sql` rodado em 16/11/2026; primeiro show cadastrado: Manifesto Bar, 20/11. Cartaz opcional por show (nov/2026): o navegador reduz a imagem (`src/lib/reduzir-foto.ts`) e sobe para `midia/agenda/<uuid>.jpg`; o servidor só recebe o caminho, confere o formato e apaga o arquivo antigo ao trocar/remover/excluir. Na Início o cartaz substitui o bloco da data e amplia ao clicar (`CartazAmpliavel`). Precisa do SQL `0005_agenda_cartaz.sql`.
 - **Google Search Console** verificado em 16/11/2026 (propriedade Domínio `thecrownlp.com.br`, conta do Gmail da banda) pelo registro TXT `google-site-verification=...` no registro.br — **não apagar esse TXT**. Sitemap (`src/app/sitemap.ts`) lista as páginas principais e um álbum por show.
 - Contador de visitas: Vercel Web Analytics (`<Analytics />` no layout de `(site)`, dentro de Suspense). Precisa estar ligado no painel da Vercel (Analytics → Enable).
 - Vídeos: a banda não tem YouTube; usa Instagram. Vídeos ficam no Instagram (embed por link); só poucos destaques hospedados no Storage.
@@ -70,6 +70,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 ## Pendências (atualizado em 16/11/2026)
 
 Com o Patrick (passos já explicados a ele):
+- Rodar `supabase/migrations/0005_agenda_cartaz.sql` no SQL Editor e subir o cartaz do Manifesto pelo Editar da Agenda. Sem o SQL, enviar cartaz dá aviso pedindo para rodá-lo (o resto da agenda funciona).
 - Google Search Console: sitemap enviado em 16/11/2026 e apareceu "Não foi possível buscar o sitemap" (comum em propriedade nova; o arquivo responde 200 `application/xml` para o Googlebot). Conferir em uns dias se virou "Sucesso" com 9 páginas; se não, remover e enviar de novo. Pedido "Solicitar indexação" da página inicial em Inspeção de URL.
 - Confirmar que o Vercel Web Analytics está ligado (Vercel → Analytics → Enable).
 - Conferir em GitHub → Actions se o "Manter Supabase ativo" está rodando verde (o Supabase pausou em ~16/11/2026 mesmo com o Vercel Cron).
@@ -79,8 +80,6 @@ Depende de material da banda:
 - Material para contratantes (PDF): release, fotos em alta, ficha técnica de som e palco.
 - Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.
-
-Ideia para depois: cartaz (imagem) opcional em cada data da agenda.
 
 ## Como trabalhar
 

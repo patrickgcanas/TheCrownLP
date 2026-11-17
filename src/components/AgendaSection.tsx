@@ -1,3 +1,4 @@
+import CartazAmpliavel from "@/components/CartazAmpliavel";
 import Reveal from "@/components/Reveal";
 import { formatarHorario, getProximosShows, limparLink, partesDaData } from "@/lib/agenda-data";
 
@@ -25,18 +26,29 @@ export default async function AgendaSection() {
           return (
             <li key={show.id} className="border-b border-border">
               <Reveal delay={i * 90} className="flex items-start gap-5 py-6 sm:items-center sm:gap-8">
-                <div
-                  className={`w-[4.5rem] shrink-0 rounded-xl border py-2 text-center sm:w-20 ${
-                    ehHoje ? "border-accent bg-accent/10" : "border-gold-dim bg-surface"
-                  }`}
-                >
-                  <p className="text-[11px] font-semibold tracking-[0.2em] text-gold">{ehHoje ? "HOJE" : semana}</p>
-                  <p className="font-display text-4xl leading-none">{dia}</p>
-                  <p className="text-[11px] font-semibold tracking-[0.2em] text-accent">{mes}</p>
-                </div>
+                {show.cartaz_url ? (
+                  // Com cartaz: a arte do show no lugar do bloco da data (a data vai para cima do nome)
+                  <CartazAmpliavel src={show.cartaz_url} titulo={show.local} className="w-28 shrink-0 sm:w-36" />
+                ) : (
+                  <div
+                    className={`w-[4.5rem] shrink-0 rounded-xl border py-2 text-center sm:w-20 ${
+                      ehHoje ? "border-accent bg-accent/10" : "border-gold-dim bg-surface"
+                    }`}
+                  >
+                    <p className="text-[11px] font-semibold tracking-[0.2em] text-gold">{ehHoje ? "HOJE" : semana}</p>
+                    <p className="font-display text-4xl leading-none">{dia}</p>
+                    <p className="text-[11px] font-semibold tracking-[0.2em] text-accent">{mes}</p>
+                  </div>
+                )}
 
                 <div className="flex min-w-0 flex-1 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="min-w-0">
+                    {show.cartaz_url && (
+                      <p className="font-display mb-1.5 text-lg leading-none tracking-[0.06em]">
+                        <span className={ehHoje ? "text-accent" : "text-gold"}>{ehHoje ? "HOJE" : semana}</span>{" "}
+                        <span>{dia}</span> <span className="text-accent">{mes}</span>
+                      </p>
+                    )}
                     <p className="font-display text-2xl leading-tight sm:text-3xl">{show.local}</p>
                     {linha && <p className="mt-1 text-sm text-muted">{linha}</p>}
                     {show.detalhe && <p className="mt-1 text-sm text-gold">{show.detalhe}</p>}

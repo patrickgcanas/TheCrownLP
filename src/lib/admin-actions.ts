@@ -225,13 +225,33 @@ function dadosDaAgenda(formData: FormData) {
   };
 }
 
+// Cartaz: o navegador sobe a imagem para o Storage (pasta agenda/) e manda só o caminho
+const CARTAZ_CAMINHO = /^agenda\/[0-9a-f-]{36}\.jpg$/;
+const SEM_COLUNA_CARTAZ =
+  "Para usar cartaz, rode antes o arquivo supabase/migrations/0005_agenda_cartaz.sql no SQL Editor do Supabase.";
+
+function erroAoSalvar(error: { code?: string }, padrao: string) {
+  // PGRST204: a coluna ainda não existe no banco (SQL do cartaz não rodado)
+  return { status: "error" as const, message: error.code === "PGRST204" ? SEM_COLUNA_CARTAZ : padrao };
+}
+
 export async function criarDataAgenda(_prev: FormState, formData: FormData): Promise<FormState> {
   const { supabase } = await requireAdmin();
   const dados = dadosDaAgenda(formData);
-  if (typeof dados === "string") return { status: "error", message: dados };
+  const caminho = texto(formData, "cartaz_path");
+  const midia = supabase.storage.from("midia");
 
-  const { error } = await supabase.from("agenda").insert(dados);
-  if (error) return { status: "error", message: "Não foi possível salvar a data." };
+  if (typeof dados === "string" || (caminho && !CARTAZ_CAMINHO.test(caminho))) {
+    if (caminho && CARTAZ_CAMINHO.test(caminho)) await midia.remove([caminho]);
+    return { status: "error", message: typeof dados === "string" ? dados : "Cartaz inválido. Tente enviar de novo." };
+  }
+
+  const cartaz = caminho ? { cartaz_path: caminho, cartaz_url: midia.getPublicUrl(caminho).data.publicUrl } : {};
+  const { error } = await supabase.from("agenda").insert({ ...dados, ...cartaz });
+  if (error) {
+    if (caminho) await midia.remove([caminho]);
+    return erroAoSalvar(error, "Não foi possível salvar a data.");
+  }
 
   atualizarAgenda();
   return { status: "success", message: "Show adicionado à agenda!" };
@@ -239,11 +259,34 @@ export async function criarDataAgenda(_prev: FormState, formData: FormData): Pro
 
 export async function editarDataAgenda(_prev: FormState, formData: FormData): Promise<FormState> {
   const { supabase } = await requireAdmin();
+  const id = texto(formData, "id");
   const dados = dadosDaAgenda(formData);
-  if (typeof dados === "string") return { status: "error", message: dados };
+  const caminho = texto(formData, "cartaz_path");
+  const remover = formData.get("remover_cartaz") === "on";
+  const midia = supabase.storage.from("midia");
 
-  const { error } = await supabase.from("agenda").update(dados).eq("id", texto(formData, "id"));
-  if (error) return { status: "error", message: "Não foi possível salvar." };
+  if (typeof dados === "string" || (caminho && !CARTAZ_CAMINHO.test(caminho))) {
+    if (caminho && CARTAZ_CAMINHO.test(caminho)) await midia.remove([caminho]);
+    return { status: "error", message: typeof dados === "string" ? dados : "Cartaz inválido. Tente enviar de novo." };
+  }
+
+  // Cartaz atual, para apagar o arquivo antigo se for trocado ou removido
+  const { data: atual } = await supabase.from("agenda").select("cartaz_path").eq("id", id).maybeSingle();
+
+  const cartaz = caminho
+    ? { cartaz_path: caminho, cartaz_url: midia.getPublicUrl(caminho).data.publicUrl }
+    : remover
+      ? { cartaz_path: null, cartaz_url: null }
+      : {};
+
+  const { error } = await supabase.from("agenda").update({ ...dados, ...cartaz }).eq("id", id);
+  if (error) {
+    if (caminho) await midia.remove([caminho]);
+    return erroAoSalvar(error, "Não foi possível salvar.");
+  }
+
+  const antigo = (atual as { cartaz_path?: string | null } | null)?.cartaz_path;
+  if ((caminho || remover) && antigo && antigo !== caminho) await midia.remove([antigo]);
 
   atualizarAgenda();
   return { status: "success", message: "Alterações salvas." };
@@ -251,7 +294,13 @@ export async function editarDataAgenda(_prev: FormState, formData: FormData): Pr
 
 export async function excluirDataAgenda(formData: FormData) {
   const { supabase } = await requireAdmin();
-  await supabase.from("agenda").delete().eq("id", texto(formData, "id"));
+  const id = texto(formData, "id");
+
+  const { data: atual } = await supabase.from("agenda").select("cartaz_path").eq("id", id).maybeSingle();
+  await supabase.from("agenda").delete().eq("id", id);
+
+  const caminho = (atual as { cartaz_path?: string | null } | null)?.cartaz_path;
+  if (caminho) await supabase.storage.from("midia").remove([caminho]);
   atualizarAgenda();
 }
 

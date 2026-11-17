@@ -3,27 +3,13 @@
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { registrarArquivo } from "@/lib/admin-actions";
+import { reduzirFoto } from "@/lib/reduzir-foto";
 import { createBrowserSupabase } from "@/lib/supabase-browser";
 
-const LADO_MAXIMO = 2000; // px no lado maior: nítido em tela cheia e ~300-500 KB por foto
 const VIDEO_MAX_MB = 50; // limite de upload do plano gratuito do Supabase
 const ENVIOS_SIMULTANEOS = 3;
 
 type Envio = { id: string; nome: string; status: "fila" | "enviando" | "ok" | "erro"; erro?: string };
-
-async function reduzirFoto(file: File): Promise<Blob> {
-  const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
-  const escala = Math.min(1, LADO_MAXIMO / Math.max(bitmap.width, bitmap.height));
-  const canvas = document.createElement("canvas");
-  canvas.width = Math.round(bitmap.width * escala);
-  canvas.height = Math.round(bitmap.height * escala);
-  canvas.getContext("2d")!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-  bitmap.close();
-
-  return new Promise((resolve, reject) =>
-    canvas.toBlob((blob) => (blob ? resolve(blob) : reject(new Error("falha ao converter"))), "image/jpeg", 0.85),
-  );
-}
 
 export default function Uploader({ showId }: { showId: string }) {
   const router = useRouter();

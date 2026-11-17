@@ -1,4 +1,5 @@
 import AgendaForm from "@/components/admin/AgendaForm";
+import CartazAmpliavel from "@/components/CartazAmpliavel";
 import ConfirmButton from "@/components/admin/ConfirmButton";
 import { excluirDataAgenda } from "@/lib/admin-actions";
 import { formatarHorario, limparLink, partesDaData } from "@/lib/agenda-data";
@@ -44,6 +45,9 @@ export default function ItemAgenda({ item, passou }: { item: DataAgenda; passou?
             </a>
           )}
         </div>
+        {item.cartaz_url && (
+          <CartazAmpliavel src={item.cartaz_url} titulo={item.local} className="w-14 shrink-0 sm:w-16" />
+        )}
       </div>
       <div className="mt-3 flex flex-wrap items-start gap-3 border-t border-border pt-3">
         <details className="min-w-0 flex-1">
