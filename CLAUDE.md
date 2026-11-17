@@ -69,7 +69,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 ## Pendências (atualizado em 16/11/2026)
 
 Com o Patrick (passos já explicados a ele):
-- Google Search Console: enviar o sitemap `https://www.thecrownlp.com.br/sitemap.xml` em Sitemaps (a propriedade já foi verificada).
+- Google Search Console: sitemap enviado em 16/11/2026 e apareceu "Não foi possível buscar o sitemap" (comum em propriedade nova; o arquivo responde 200 `application/xml` para o Googlebot). Conferir em uns dias se virou "Sucesso" com 9 páginas; se não, remover e enviar de novo. Pedido "Solicitar indexação" da página inicial em Inspeção de URL.
 - Confirmar que o Vercel Web Analytics está ligado (Vercel → Analytics → Enable).
 - Conferir em GitHub → Actions se o "Manter Supabase ativo" está rodando verde (o Supabase pausou em ~16/11/2026 mesmo com o Vercel Cron).
 
