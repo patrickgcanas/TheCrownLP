@@ -11,6 +11,9 @@ export const metadata: Metadata = {
 const integrantes = [
   {
     nome: "Giu Malizia",
+    foto: "/images/integrantes/giu-malizia.jpg",
+    // Ponto da foto que fica à mostra quando o quadro corta as bordas (horizontal vertical)
+    focoFoto: "50% 25%",
     personagem: "Nossa Emily",
     instrumento: "Vocal",
     texto:
@@ -18,6 +21,8 @@ const integrantes = [
   },
   {
     nome: "Cesar Fukuda",
+    foto: "/images/integrantes/cesar-fukuda.jpg",
+    focoFoto: "50% 30%",
     personagem: "Nosso Dave",
     instrumento: "Baixo",
     texto:
@@ -25,6 +30,8 @@ const integrantes = [
   },
   {
     nome: "Pedro Martinez",
+    foto: "/images/integrantes/pedro-martinez.jpg",
+    focoFoto: "50% 25%",
     personagem: "Nosso Brad",
     instrumento: "Guitarra",
     texto:
@@ -32,6 +39,8 @@ const integrantes = [
   },
   {
     nome: "Victor Fernandez",
+    foto: "/images/integrantes/victor-fernandez.jpg",
+    focoFoto: "50% 25%",
     personagem: "Nosso Mike",
     instrumento: "Vocal e rap",
     texto:
@@ -39,6 +48,8 @@ const integrantes = [
   },
   {
     nome: "Patrick Cañas",
+    foto: "/images/integrantes/patrick-canas.jpg",
+    focoFoto: "50% 20%",
     personagem: "Nosso Colin",
     instrumento: "Bateria",
     texto:
@@ -89,12 +100,22 @@ export default function HistoriaPage() {
             <li key={m.nome}>
               <Reveal
                 delay={(i % 2) * 120}
-                className="h-full rounded-2xl border border-border border-l-4 border-l-gold bg-surface p-6"
+                className="flex h-full flex-col overflow-hidden rounded-2xl border border-border border-l-4 border-l-gold bg-surface lg:flex-row"
               >
-                <p className="eyebrow">{m.instrumento}</p>
-                <h3 className="font-display mt-2 text-2xl leading-tight">{m.nome}</h3>
-                <p className="mt-0.5 text-sm font-semibold uppercase tracking-[0.1em] text-accent">{m.personagem}</p>
-                <p className="mt-4 leading-relaxed text-muted">{m.texto}</p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={m.foto}
+                  alt={`${m.nome}, ${m.instrumento.toLowerCase()} da The Crown LP`}
+                  loading="lazy"
+                  style={{ objectPosition: m.focoFoto }}
+                  className="aspect-[4/5] w-full object-cover sm:aspect-square lg:aspect-auto lg:w-44 lg:shrink-0"
+                />
+                <div className="p-6">
+                  <p className="eyebrow">{m.instrumento}</p>
+                  <h3 className="font-display mt-2 text-2xl leading-tight">{m.nome}</h3>
+                  <p className="mt-0.5 text-sm font-semibold uppercase tracking-[0.1em] text-accent">{m.personagem}</p>
+                  <p className="mt-4 leading-relaxed text-muted">{m.texto}</p>
+                </div>
               </Reveal>
             </li>
           ))}

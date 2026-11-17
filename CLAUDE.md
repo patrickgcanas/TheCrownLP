@@ -66,6 +66,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 - Agenda de próximos shows (nov/2026): tabela `agenda` (`supabase/migrations/0004_agenda.sql`), painel em `/admin/agenda` (data, horário, local, cidade, link, observação), seção "Próximos shows" na Início logo abaixo do topo (`AgendaSection`, cache com tag `agenda`, renova de hora em hora). Mostra de hoje em diante (horário de Brasília); sem datas, a seção some. Links de ingresso passam por `limparLink` (tira `_gl`, `utm_*`, `fbclid`...); no painel aparece só o nome do site do link. SQL `0004_agenda.sql` rodado em 16/11/2026; primeiro show cadastrado: Manifesto Bar, 20/11. Cartaz opcional por show (nov/2026): o navegador reduz a imagem (`src/lib/reduzir-foto.ts`) e sobe para `midia/agenda/<uuid>.jpg`; o servidor só recebe o caminho, confere o formato e apaga o arquivo antigo ao trocar/remover/excluir. Na Início o cartaz substitui o bloco da data e amplia ao clicar (`CartazAmpliavel`). Precisa do SQL `0005_agenda_cartaz.sql`.
 - **Google Search Console** verificado em 16/11/2026 (propriedade Domínio `thecrownlp.com.br`, conta do Gmail da banda) pelo registro TXT `google-site-verification=...` no registro.br — **não apagar esse TXT**. Sitemap (`src/app/sitemap.ts`) lista as páginas principais e um álbum por show. Sitemap enviado e "Processado" em 16/11/2026 (9 páginas encontradas); pedida a indexação da página inicial.
 - SEO (nov/2026): cada página declara o endereço oficial (`alternates.canonical`; álbuns em `generateMetadata` com título próprio); `thecrownlp.vercel.app` redireciona (308) para `www.thecrownlp.com.br` em `next.config.ts`, menos `/api` (despertador do Supabase); a Início tem a "ficha da banda" em JSON-LD (`MusicGroup`, Instagram em `sameAs`). Cidade da banda não está no site nem na ficha: perguntar antes de colocar.
+- Fotos dos integrantes (nov/2026) na página História: `public/images/integrantes/<nome>.jpg` (720 px de largura, reduzidas com ffmpeg), campo `foto` e `focoFoto` (ponto que fica à mostra no corte) em `integrantes` de `src/app/(site)/historia/page.tsx`. Foto à esquerda no computador, em cima no celular.
 - Contador de visitas: Vercel Web Analytics (`<Analytics />` no layout de `(site)`, dentro de Suspense). Precisa estar ligado no painel da Vercel (Analytics → Enable).
 - Vídeos: a banda não tem YouTube; usa Instagram. Vídeos ficam no Instagram (embed por link); só poucos destaques hospedados no Storage.
 
@@ -79,7 +80,6 @@ Com o Patrick (passos já explicados a ele):
 Depende de material da banda:
 - Repertório (lista de músicas) → página nova.
 - Material para contratantes (PDF): release, fotos em alta, ficha técnica de som e palco.
-- Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.
 
 ## Como trabalhar
