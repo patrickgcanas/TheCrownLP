@@ -129,7 +129,7 @@ export default function Uploader({ showId }: { showId: string }) {
       {envios.length > 0 && (
         <div className="mt-4 rounded-xl border border-border bg-surface p-4 text-sm">
           <p className="font-semibold">
-            {emAndamento ? "Enviando…" : "Envio concluído"} — {concluidos} de {envios.length}
+            {emAndamento ? "Enviando…" : "Envio concluído"}: {concluidos} de {envios.length}
             {comErro.length > 0 && <span className="text-accent"> · {comErro.length} com erro</span>}
           </p>
           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-background">

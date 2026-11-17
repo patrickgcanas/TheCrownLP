@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <div>
           <Logo size={36} />
-          <p className="mt-3">Tributo a Linkin Park — shows em bares, eventos e prefeituras.</p>
+          <p className="mt-3">Tributo a Linkin Park, com shows em bares, eventos e prefeituras.</p>
           <p className="font-display mt-1 text-base tracking-[0.12em] text-gold">HEAVY IS THE CROWN</p>
         </div>
 
@@ -28,7 +28,7 @@ export default function Footer() {
         </div>
       </div>
       <p className="border-t border-border px-4 py-4 text-center text-xs text-muted">
-        © The Crown LP — Todos os direitos reservados.
+        © The Crown LP. Todos os direitos reservados.
       </p>
     </footer>
   );

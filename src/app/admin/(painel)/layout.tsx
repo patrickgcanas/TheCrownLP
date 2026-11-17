@@ -7,7 +7,7 @@ import { sair } from "@/lib/auth-actions";
 import AdminNavLink from "./AdminNavLink";
 
 export const metadata: Metadata = {
-  title: "Painel — The Crown LP",
+  title: "Painel | The Crown LP",
   robots: { index: false, follow: false },
 };
 

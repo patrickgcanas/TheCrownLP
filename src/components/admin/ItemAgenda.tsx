@@ -31,7 +31,7 @@ export default function ItemAgenda({ item, passou }: { item: DataAgenda; passou?
         </div>
         <div className="min-w-0 flex-1 break-words">
           <p className="font-display text-2xl leading-tight">{item.local}</p>
-          <p className="mt-1 text-sm text-muted">{[item.cidade, horario].filter(Boolean).join(" · ") || "—"}</p>
+          <p className="mt-1 text-sm text-muted">{[item.cidade, horario].filter(Boolean).join(" · ")}</p>
           {item.detalhe && <p className="mt-1 text-sm text-muted">{item.detalhe}</p>}
           {item.link && (
             <a

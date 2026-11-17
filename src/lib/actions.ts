@@ -100,7 +100,7 @@ export async function enviarContato(
 
   after(() =>
     avisarBanda({
-      assunto: `Novo contato: ${tipoEvento} — ${nome}`,
+      assunto: `Novo contato: ${tipoEvento} · ${nome}`,
       titulo: "Novo pedido de contato pelo site",
       linhas: [
         ["Nome", nome],

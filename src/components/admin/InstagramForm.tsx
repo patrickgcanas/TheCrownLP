@@ -23,7 +23,7 @@ export default function InstagramForm({ showId }: { showId: string }) {
         className="field"
         aria-label="Link do post do Instagram"
       />
-      <input name="titulo" placeholder="Legenda (opcional) — ex: Numb ao vivo" className="field" aria-label="Legenda" />
+      <input name="titulo" placeholder="Legenda (opcional), ex: Numb ao vivo" className="field" aria-label="Legenda" />
       {state.message && (
         <p className={`text-sm ${state.status === "success" ? "text-green-400" : "text-accent"}`}>{state.message}</p>
       )}

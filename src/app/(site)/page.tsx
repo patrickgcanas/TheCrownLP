@@ -28,8 +28,8 @@ export default function Home() {
             <span className="h-px w-12 bg-gradient-to-l from-transparent to-gold" />
           </p>
           <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-muted sm:text-lg md:mx-0">
-            Trazemos a energia, a raiva e a emoção de Linkin Park para o palco —
-            para bares, casas de show, eventos privados e apresentações
+            Trazemos a energia, a raiva e a emoção de Linkin Park para o palco,
+            em bares, casas de show, eventos privados e apresentações
             públicas.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3 md:justify-start">
@@ -87,7 +87,7 @@ export default function Home() {
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted">
             Bares, festas privadas, eventos corporativos ou apresentações
-            públicas — fale com a gente e monte o show ideal.
+            públicas. Fale com a gente e monte o show ideal.
           </p>
           <Link href="/contrate" className="btn-primary mt-8">
             Fale com a banda

@@ -3,7 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "História — The Crown LP",
+  title: "História | The Crown LP",
   description: "A história da banda The Crown LP, tributo a Linkin Park, e os músicos que sobem ao palco.",
 };
 

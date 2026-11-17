@@ -17,7 +17,7 @@ const interTight = Inter_Tight({
 // A imagem da prévia ao compartilhar o link (WhatsApp, Instagram...) é src/app/opengraph-image.jpg
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "The Crown LP — Tributo a Linkin Park",
+  title: "The Crown LP | Tributo a Linkin Park",
   description:
     "The Crown LP é uma banda tributo a Linkin Park. Heavy is the Crown. Contrate para bares, eventos privados e apresentações públicas.",
   openGraph: {

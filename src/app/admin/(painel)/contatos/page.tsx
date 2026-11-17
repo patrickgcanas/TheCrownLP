@@ -32,7 +32,7 @@ async function Lista() {
     <ul className="space-y-3">
       {mensagens.map((m) => {
         const whatsapp = m.telefone ? whatsappLink(m.telefone) : null;
-        const assunto = encodeURIComponent(`The Crown LP — ${m.tipo_evento}`);
+        const assunto = encodeURIComponent(`The Crown LP · ${m.tipo_evento}`);
         return (
           <li key={m.id}>
             <details className={`group rounded-xl border bg-surface ${m.respondida ? "border-border opacity-70" : "border-accent/50"}`}>

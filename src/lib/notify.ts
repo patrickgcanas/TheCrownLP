@@ -34,7 +34,7 @@ export async function avisarBanda({
       <h2 style="margin:0 0 16px;color:#d63fb8">${escapeHtml(titulo)}</h2>
       ${corpo}
       <p style="margin:24px 0 0"><a href="${siteUrl}${link}" style="background:#d63fb8;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none">Abrir no painel</a></p>
-      <p style="margin:24px 0 0;font-size:12px;color:#888">The Crown LP — Heavy is the Crown</p>
+      <p style="margin:24px 0 0;font-size:12px;color:#888">The Crown LP · Heavy is the Crown</p>
     </div>`;
 
   try {

@@ -5,7 +5,7 @@ import { EMAIL_BANDA, whatsappUrl } from "@/lib/contatos";
 import { INSTAGRAM_USUARIO } from "@/lib/instagram";
 
 export const metadata: Metadata = {
-  title: "Contato — The Crown LP",
+  title: "Contato | The Crown LP",
   description: "Fale com a The Crown LP, tributo a Linkin Park, pelo Instagram, WhatsApp ou e-mail.",
 };
 

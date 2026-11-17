@@ -46,6 +46,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 - Títulos em **Inter Tight** (`font-display`: negrito, letras juntas, caixa alta), no estilo da escrita do Linkin Park na fase *From Zero*; texto corrido em Inter. No topo, "THE CROWN" em negrito e "LP TRIBUTE" em peso normal, como "LINKIN PARK / FROM ZERO". Classes prontas: `btn-primary`, `btn-ghost`, `eyebrow`, `field`, `text-gradient-crown`, `text-gradient-accent`.
   - Já testado e **recusado pela banda**: Archivo Black com "pontas" no R e no N imitando o logo antigo do LP (ficou feio). Fontes "Linkin Park" do dafont/fontmeme não servem: licença só para uso pessoal ou cópia da Arial da Monotype, e sem acentos.
   - A banda pediu para **não mudar a estrutura/layout** ao mexer em fonte: comparar antes/depois (desktop e celular) e manter as mesmas quebras de linha.
+- **Sem travessão (—)** nos textos do site: o Patrick não gosta (nov/2026). Usar vírgula, ponto ou dois-pontos; nos títulos das abas, "Página | The Crown LP".
 - Logo só no canto (menu/rodapé), nunca grande no topo — a banda não gostou.
 - Fundo do topo: `public/videos/hero-loop.mp4`, trecho do redemoinho da intro 2× mais lento, com desfoque leve. A banda achou rápido demais a 1× e lento demais a 4×.
 - Mote **HEAVY IS THE CROWN** em dourado abaixo do título.

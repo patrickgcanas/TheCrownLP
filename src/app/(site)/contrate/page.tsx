@@ -3,7 +3,7 @@ import ContatoForm from "@/components/ContatoForm";
 import PageHeader from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: "Contrate a banda — The Crown LP",
+  title: "Contrate a banda | The Crown LP",
   description: "Contrate a The Crown LP, tributo a Linkin Park, para seu bar, evento ou apresentação pública.",
 };
 

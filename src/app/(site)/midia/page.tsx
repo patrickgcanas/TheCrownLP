@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 import { formatarData, getShows } from "@/lib/midia-data";
 
 export const metadata: Metadata = {
-  title: "Mídia — The Crown LP",
+  title: "Mídia | The Crown LP",
   description: "Vídeos e fotos dos shows da The Crown LP, tributo a Linkin Park.",
 };
 
