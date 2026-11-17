@@ -8,7 +8,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 
 ## Stack
 
-- Next.js 16 (App Router, `cacheComponents` e `partialPrefetching` ligados) + React 19 + Tailwind v4 + TypeScript.
+- Next.js 16.4.6 (App Router, `cacheComponents` e `partialPrefetching` ligados) + React 19 + Tailwind v4 + TypeScript.
 - Supabase (Postgres, Auth, Storage) via `@supabase/supabase-js` e `@supabase/ssr`.
 - Deploy na Vercel; push no `main` publica em produção.
 
@@ -79,7 +79,6 @@ Depende de material da banda:
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.
 
 Segurança:
-- Next.js 16.4.2 tem um alerta moderado (GHSA-mfr8-8qww-v76h, `unstable_cache` + `"use cache"`; o projeto não usa `unstable_cache`). Correção: subir para 16.4.6 (oferecido ao Patrick em 16/11/2026). O `next build` local às vezes para com `SecurityFatalError` mostrando esse aviso; rodar de novo passa.
 - Trocar a senha do banco do Supabase (foi exposta numa conversa).
 
 Ideia para depois: cartaz (imagem) opcional em cada data da agenda.
