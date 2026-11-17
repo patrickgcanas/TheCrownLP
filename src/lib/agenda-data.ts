@@ -46,6 +46,22 @@ export function partesDaData(data: string) {
   return { dia: String(dia).padStart(2, "0"), mes: MESES[mes - 1], semana: DIAS_SEMANA[semana], ano };
 }
 
+// Tira os parâmetros de rastreamento que sites de ingresso e redes sociais grudam no link
+// (ex.: ?_gl=1*6vpq10*_gcl_aw*...). O link continua levando para a mesma página.
+const RASTREADORES = /^(utm_.+|_gl|_ga|_gac|gclid|gbraid|wbraid|fbclid|igsh|igshid|mc_cid|mc_eid|si|ttclid)$/i;
+
+export function limparLink(link: string) {
+  try {
+    const url = new URL(link);
+    for (const chave of [...url.searchParams.keys()]) {
+      if (RASTREADORES.test(chave)) url.searchParams.delete(chave);
+    }
+    return url.toString();
+  } catch {
+    return link;
+  }
+}
+
 // "22:00:00" → "22h"; "21:30:00" → "21h30"
 export function formatarHorario(horario: string | null) {
   if (!horario) return null;

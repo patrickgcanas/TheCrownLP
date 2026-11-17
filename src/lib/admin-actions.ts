@@ -2,7 +2,7 @@
 
 import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
-import { AGENDA_TAG } from "./agenda-data";
+import { AGENDA_TAG, limparLink } from "./agenda-data";
 import { requireAdmin } from "./auth";
 import { DEPOIMENTOS_TAG } from "./depoimentos-data";
 import { capasDoFeed, codigoInstagram } from "./instagram";
@@ -212,6 +212,7 @@ function dadosDaAgenda(formData: FormData) {
     } catch {
       return "Esse link não parece válido. Copie o endereço completo da página do evento.";
     }
+    link = limparLink(link);
   }
 
   return {

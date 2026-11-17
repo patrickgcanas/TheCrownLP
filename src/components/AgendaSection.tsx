@@ -1,5 +1,5 @@
 import Reveal from "@/components/Reveal";
-import { formatarHorario, getProximosShows, partesDaData } from "@/lib/agenda-data";
+import { formatarHorario, getProximosShows, limparLink, partesDaData } from "@/lib/agenda-data";
 
 // Próximos shows cadastrados no painel (Agenda). Sem nenhum marcado, a seção não aparece.
 export default async function AgendaSection() {
@@ -43,7 +43,7 @@ export default async function AgendaSection() {
                   </div>
                   {show.link && (
                     <a
-                      href={show.link}
+                      href={limparLink(show.link)}
                       target="_blank"
                       rel="noreferrer"
                       className="btn-ghost shrink-0 self-start !px-5 !py-2.5 sm:self-auto"
