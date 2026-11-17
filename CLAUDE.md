@@ -61,14 +61,13 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
 - Instagram: feed do Behold (behold.so, conta com o e-mail da banda, plano grátis: 6 posts, atualiza 1x/dia, 1.200 views/mês). Link em `src/lib/instagram.ts`; aparece na Início e na Mídia. A conta @thecrown.lp é Profissional (exigência do Behold).
 - Posts do Instagram nos álbuns (`InstagramCard`): cartão no visual do site (capa + play); o embed oficial (branco, sem tema escuro) só abre numa janela `<dialog>` ao clicar. Capa: `thumbnail_url` (cópia guardada no Storage pelo painel ao adicionar o link) > feed do Behold > `/api/capa-instagram/[codigo]` (o servidor busca `instagram.com/p/<código>/media/?size=l`; o navegador não pode carregar direto por causa do `Cross-Origin-Resource-Policy`).
 - Prévia ao compartilhar o link (WhatsApp/Instagram): `src/app/opengraph-image.jpg` (1200×630, foto da banda no palco + nome + mote, montada em HTML e fotografada com o Chrome) e `opengraph-image.alt.txt`; `metadataBase` no `src/app/layout.tsx`. Cada página usa o próprio título. O WhatsApp guarda a prévia antiga em cache por um tempo.
-- Agenda de próximos shows (nov/2026): tabela `agenda` (`supabase/migrations/0004_agenda.sql`), painel em `/admin/agenda` (data, horário, local, cidade, link, observação), seção "Próximos shows" na Início logo abaixo do topo (`AgendaSection`, cache com tag `agenda`, renova de hora em hora). Mostra de hoje em diante (horário de Brasília); sem datas, a seção some.
+- Agenda de próximos shows (nov/2026): tabela `agenda` (`supabase/migrations/0004_agenda.sql`), painel em `/admin/agenda` (data, horário, local, cidade, link, observação), seção "Próximos shows" na Início logo abaixo do topo (`AgendaSection`, cache com tag `agenda`, renova de hora em hora). Mostra de hoje em diante (horário de Brasília); sem datas, a seção some. Links de ingresso passam por `limparLink` (tira `_gl`, `utm_*`, `fbclid`...); no painel aparece só o nome do site do link. SQL `0004_agenda.sql` rodado em 16/11/2026; primeiro show cadastrado: Manifesto Bar, 20/11.
 - Contador de visitas: Vercel Web Analytics (`<Analytics />` no layout de `(site)`, dentro de Suspense). Precisa estar ligado no painel da Vercel (Analytics → Enable).
 - Vídeos: a banda não tem YouTube; usa Instagram. Vídeos ficam no Instagram (embed por link); só poucos destaques hospedados no Storage.
 
 ## Pendências (atualizado em 16/11/2026)
 
 Com o Patrick (passos já explicados a ele):
-- **Rodar `supabase/migrations/0004_agenda.sql`** no SQL Editor do Supabase (copiar pelo VS Code). Sem isso a aba Agenda do painel mostra um aviso e a seção "Próximos shows" não aparece. Depois, cadastrar o primeiro show (Manifesto, 20/11).
 - **Google Search Console**: propriedade do tipo Domínio `thecrownlp.com.br`, verificação por registro TXT no registro.br (nome em branco, sem apagar o TXT do SPF). Depois de verificado, enviar o sitemap `https://www.thecrownlp.com.br/sitemap.xml` em Sitemaps.
 - Confirmar que o Vercel Web Analytics está ligado (Vercel → Analytics → Enable).
 - Conferir em GitHub → Actions se o "Manter Supabase ativo" está rodando verde (o Supabase pausou em ~16/11/2026 mesmo com o Vercel Cron).
@@ -80,6 +79,7 @@ Depende de material da banda:
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.
 
 Segurança:
+- Next.js 16.4.2 tem um alerta moderado (GHSA-mfr8-8qww-v76h, `unstable_cache` + `"use cache"`; o projeto não usa `unstable_cache`). Correção: subir para 16.4.6 (oferecido ao Patrick em 16/11/2026). O `next build` local às vezes para com `SecurityFatalError` mostrando esse aviso; rodar de novo passa.
 - Trocar a senha do banco do Supabase (foi exposta numa conversa).
 
 Ideia para depois: cartaz (imagem) opcional em cada data da agenda.
