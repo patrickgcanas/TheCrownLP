@@ -37,6 +37,7 @@ O projeto é editado em mais de um computador (casa e escritório). Este arquivo
   - "Automatically expose new tables" está **desligado**: toda tabela nova precisa de `grant` explícito além das policies RLS.
   - Bucket público `midia` (vídeo de abertura e, com o painel, fotos/vídeos dos shows). Limite de 50 MB por arquivo no plano grátis.
   - **O plano grátis pausa o projeto após ~7 dias sem uso** (aconteceu em nov/2026: o endereço some do DNS, o vídeo de abertura e os formulários param). Para reativar: painel do Supabase → Restore project. Prevenção: Vercel Cron diário (`vercel.json`) e GitHub Actions 2x/dia (`.github/workflows/manter-supabase-ativo.yml`, adicionado em 16/11/2026 depois de pausar de novo) chamam `/api/manter-ativo`, que faz uma consulta leve. Se o Action falhar, o GitHub manda e-mail ao dono do repositório. Se pausar mesmo assim, conferir em Vercel → Settings → Cron Jobs se está rodando.
+  - Senha do banco trocada em 16/11/2026 pelo Patrick (a antiga tinha sido exposta numa conversa). O site não usa a senha do banco, só a URL + chave anon e a sessão do painel; nunca pedir a senha no chat.
 - Variáveis de ambiente: ver `.env.local.example`. O `.env.local` não vai para o git.
 
 ## Identidade visual (aprovada pela banda)
@@ -78,9 +79,6 @@ Depende de material da banda:
 - Material para contratantes (PDF): release, fotos em alta, ficha técnica de som e palco.
 - Fotos dos integrantes para a seção "Quem sobe ao palco" da página História (hoje só texto).
 - Logo em alta resolução / PNG sem fundo, se a banda tiver.
-
-Segurança:
-- Trocar a senha do banco do Supabase (foi exposta numa conversa).
 
 Ideia para depois: cartaz (imagem) opcional em cada data da agenda.
 
